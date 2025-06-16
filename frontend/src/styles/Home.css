@@ -1,6 +1,9 @@
 .home-container {
   width: 100%;
-  height: 2305px;
+  max-width: 100vw;
+  height: auto;
+  margin: 0;
+  background-color: #ac1212;
 
   background: linear-gradient(
     71deg,
