@@ -5,6 +5,7 @@ import "aos/dist/aos.css"; // Import AOS styles
 import AOS from "aos"; // Import AOS library
 
 import Home from "./pages/Home"; // Importing the Home component
+import Testimonals from "./components/Testimonals";
 
 export default function App() {
   // Initialize AOS
