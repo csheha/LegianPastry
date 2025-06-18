@@ -10,6 +10,7 @@ import person2 from "../assets/person2.jpg";
 import person3 from "../assets/person3.jpg";
 import person4 from "../assets/person4.jpg";
 import person5 from "../assets/person5.jpg";
+import framelogo from "../assets/Frame.png";
 
 const SlideData = [
   {
@@ -80,6 +81,9 @@ export default function Testimonals() {
                 <div className="testimonial-subcontainer">
                   <div className="testimonial-column">
                     <div className="testimonial-content">
+                      <div className="testimonial-logo-placeholder">
+                        <img src={framelogo} alt="Logo" />
+                      </div>
                       <div className="review">{slide.review}</div>
                       <div className="avatar">
                         <div className="avatar-image">
