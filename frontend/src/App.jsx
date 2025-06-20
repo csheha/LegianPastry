@@ -6,6 +6,7 @@ import AOS from "aos"; // Import AOS library
 
 import Home from "./pages/Home"; // Importing the Home component
 import Testimonals from "./components/Testimonals";
+import Features from "./components/Features";
 
 export default function App() {
   // Initialize AOS
@@ -21,6 +22,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/fe" element={<Features />} />
       </Routes>
     </BrowserRouter>
   );
