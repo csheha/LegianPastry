@@ -79,7 +79,7 @@
 }
 
 .hero-section-placeholder {
-  height: 620px;
+  height: 80vh;
   flex: 1 0 0;
   width: 50%;
   border-radius: 100px;

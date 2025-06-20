@@ -7,7 +7,12 @@ export default function Hero() {
       <div className="hero-section-container">
         <div className="hero-section-column">
           <div className="hero-section-content">
-            <span className="heading">
+            <span
+              className="heading"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              data-aos-once="true"
+            >
               Get Ready to virtually join Chef Vindes Lee for an Unforgettable
               authentic Tapas experience
             </span>
