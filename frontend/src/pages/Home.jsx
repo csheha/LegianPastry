@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Testimonals from "../components/Testimonals";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
+import DevelopersSection from "../components/DevelopersSection";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           <Hero />
           <Testimonals />
           <Features />
+          <DevelopersSection />
           <Footer />
         </main>
 
