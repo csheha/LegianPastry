@@ -5,7 +5,6 @@ import "aos/dist/aos.css"; // Import AOS styles
 import AOS from "aos"; // Import AOS library
 
 import Home from "./pages/Home"; // Importing the Home component
-import Footer from "./components/Footer";
 
 export default function App() {
   // Initialize AOS
@@ -21,7 +20,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/footer" element={<Footer />} />
       </Routes>
     </BrowserRouter>
   );

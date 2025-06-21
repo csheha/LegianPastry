@@ -46,7 +46,7 @@ const SlideData = [
 export default function Testimonals() {
   return (
     <>
-      <div className="testimonial">
+      <div id="testimonials" className="testimonial">
         <h3 className="heading-testimonials">Testimonials</h3>
 
         <Swiper

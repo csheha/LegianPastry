@@ -1,0 +1,355 @@
+.developmentSection {
+  display: flex;
+
+  padding: 112px 64px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 80px;
+  background: linear-gradient(
+      0deg,
+      rgba(215, 185, 156, 0.2) 0%,
+      rgba(215, 185, 156, 0.2) 100%
+    ),
+    var(--Background-color-primary, #fff);
+}
+.development-container {
+  background: linear-gradient(
+      0deg,
+      rgba(215, 185, 156, 0.2) 0%,
+      rgba(215, 185, 156, 0.2) 100%
+    ),
+    var(--Background-color-primary, #fff);
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  align-self: stretch;
+  justify-content: space-between;
+  padding: 10px 64px;
+}
+.development-section-title {
+  display: flex;
+  width: 356px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+.development-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+.development-section-subcontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+.development-heading-part1 {
+  align-self: stretch;
+  color: #ffb319;
+  /* Heading/Desktop/H2 */
+  font-family: Roboto;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 57.6px */
+  color: var(--Text-primary, #000);
+}
+.development-heading-part2 {
+  align-self: stretch;
+  color: #ffb319;
+  /* Heading/Desktop/H2 */
+  font-family: Roboto;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+.development-text {
+  align-self: stretch;
+  color: var(--Text-primary, #000);
+
+  /* Text/Medium/Normal */
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+}
+
+.development-team-box {
+  align-self: stretch;
+}
+.development-team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 84px;
+  align-self: stretch;
+  padding-top: 40px;
+}
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 40px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.member-img {
+  width: 80px;
+  height: 80px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.membercontent {
+  text-align: center;
+}
+
+.member-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.member-job {
+  font-size: 1rem;
+  color: #666666;
+}
+
+.team-member-social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.team-member-social-icons div {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  border-radius: 50%;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.team-member-social-icons div:hover {
+  background-color: #ffb319;
+  transform: scale(1.1);
+}
+
+.team-member-social-icons svg {
+  width: 24px;
+  height: 24px;
+  fill: #333333;
+}
+
+.team-member-social-icons div:hover svg {
+  fill: #ffffff;
+}
+/* Medium screens (tablets) - 768px to 1023px */
+@media (max-width: 1023px) {
+  .developmentSection {
+    width: 100%;
+    padding: 80px 32px;
+    gap: 60px;
+  }
+
+  .development-container {
+    flex-direction: column;
+    gap: 60px;
+    padding: 10px 32px;
+    align-items: center;
+  }
+
+  .development-section-title {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .development-heading-part1,
+  .development-heading-part2 {
+    font-size: 40px;
+    line-height: 110%;
+  }
+
+  .development-text {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .development-team {
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  .member-card {
+    width: 280px;
+    padding: 30px;
+  }
+
+  .member-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .member-name {
+    font-size: 1.125rem;
+  }
+
+  .member-job {
+    font-size: 0.9rem;
+  }
+
+  .team-member-social-icons div {
+    width: 36px;
+    height: 36px;
+  }
+
+  .team-member-social-icons svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Small screens (mobile) - up to 767px */
+@media (max-width: 767px) {
+  .developmentSection {
+    padding: 60px 16px;
+    gap: 40px;
+  }
+
+  .development-container {
+    gap: 40px;
+    padding: 10px 16px;
+  }
+
+  .development-section-title {
+    gap: 24px;
+  }
+
+  .development-heading-part1,
+  .development-heading-part2 {
+    font-size: 32px;
+    line-height: 110%;
+  }
+
+  .development-text {
+    font-size: 16px;
+  }
+
+  .development-team {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .member-card {
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+  }
+
+  .member-img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 12px;
+  }
+
+  .member-name {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
+  .member-job {
+    font-size: 0.875rem;
+  }
+
+  .team-member-social-icons {
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .team-member-social-icons div {
+    width: 32px;
+    height: 32px;
+  }
+
+  .team-member-social-icons svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Extra small screens - up to 480px */
+@media (max-width: 480px) {
+  .developmentSection {
+    padding: 40px 12px;
+    gap: 32px;
+  }
+
+  .development-container {
+    padding: 10px 12px;
+    gap: 32px;
+  }
+
+  .development-heading-part1,
+  .development-heading-part2 {
+    font-size: 28px;
+  }
+
+  .development-text {
+    font-size: 15px;
+  }
+
+  .member-card {
+    padding: 20px;
+    max-width: 280px;
+  }
+
+  .member-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .member-name {
+    font-size: 1rem;
+  }
+
+  .member-job {
+    font-size: 0.8rem;
+  }
+
+  .team-member-social-icons div {
+    width: 30px;
+    height: 30px;
+  }
+
+  .team-member-social-icons svg {
+    width: 16px;
+    height: 16px;
+  }
+}

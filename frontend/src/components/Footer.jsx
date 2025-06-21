@@ -4,7 +4,7 @@ import Logo from "../assets/Frame.png"; // Importing the logo image
 export default function Footer() {
   return (
     <>
-      <div className="footer-section">
+      <div id="footer" className="footer-section">
         <div className="footer-card">
           <div className="footer-content">
             <div className="footer-content-left">
