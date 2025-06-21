@@ -4,6 +4,7 @@ import Hero from "../components/Hero"; // Importing the Home component
 import Navbar from "../components/Navbar";
 import Testimonals from "../components/Testimonals";
 import Features from "../components/Features";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
           <Hero />
           <Testimonals />
           <Features />
+          <Footer />
         </main>
 
         {/* Footer */}
