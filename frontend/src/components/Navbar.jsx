@@ -1,135 +1,68 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import burgerIcon from '../assets/burger.png';
+import '../styles/Navbar.css';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Classes', href: '#class' },
     { name: 'Contact', href: '#contact' },
-]
+    { name: 'Gallery', href: '#gallery' },
+];
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => setMenuOpen(prev => !prev);
 
     useEffect(() => {
-        const handleScroll = () =>{
+        const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
         };
 
         window.addEventListener('scroll', handleScroll);
-
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-  return (
-    <nav
-        style={{
-            position: 'fixed',
-            width: '100%',
-            zIndex: 40,
-            transition: 'all 0.3s ease',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        }}
-    >
-      
-        <div 
-            style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-            }}
-        >
-            <a
-                style={{
-                    fontSize: '24px',
-                    fontWeight: '1000',
-                    color: '#f5f5dc',
-                    fontFamily: '"Modak", cursive',
-                    display: 'flex',
-                    alignItems: 'center',
-                    textDecoration: 'none',
-                }}
-                href="#hero"
-            >
-                <img 
-                    src={burgerIcon}
-                    alt="Burger Icon"
-                    style={{
-                        width: '60px',
-                        height: '60px',
-                        margin: '10px',
-                    }}
-                />
-                <span>
-                    LegianPastry
-                </span>
-            </a>
-
-
-            <div
-                style={{
-                    display: 'flex',
-                    gap: '100px',
-                    justifyContent: 'center',
-                    flex: '1',
-                }}
-            >
-                {navItems.map((item, key) => (
-                    <a 
-                        key={key} 
-                        href={item.href}
-                        style={{
-                            fontSize: '20px',
-                            fontWeight: '500',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            color: '#f3ebe2',
-                            transition: 'color 0.3s ease',
-                            textDecoration: 'none',
-                            padding: '10px 20px',
-                            borderRadius: '5px',
-                        }}
-                        onMouseEnter={e => {
-                            e.target.style.color = '#000';
-                            e.target.style.backgroundColor = '#eeb662';
-                        }}
-                        onMouseLeave={e => {
-                            e.target.style.color = '#f3ebe2';
-                            e.target.style.backgroundColor = 'transparent';
-                        }}
-                    >
-                        {item.name}
+    return (
+        <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
+            <div className="navbar-container">
+                <div className="navbar-logo">
+                    <a href="#hero">
+                        <img src={burgerIcon} alt="Burger Icon" />
+                        <span>LegianPastry</span>
                     </a>
-                ))}
+                </div>
+
+                <div className={`navbar-content ${menuOpen ? 'responsive_nav' : ''}`}>
+                    <div className="close-button">
+                        <button onClick={toggleMenu}>
+                            <FaTimes size={20} className='fa-close'/>
+                        </button>
+                    </div>
+
+                    <div className="navbar-links">
+                        {navItems.map((item, key) => (
+                            <a key={key} href={item.href} onClick={() => setMenuOpen(false)}>
+                                {item.name}
+                            </a>
+                        ))}
+                    </div>
+
+                    <div className="navbar-login">
+                        <a href="#login" onClick={() => setMenuOpen(false)}>Log In</a>
+                    </div>
+
+
+                </div>
+
+                <div className="menu-icon">
+                    <button onClick={toggleMenu}>
+                        <FaBars size={28} className='fa-menu' />
+                    </button>
+                </div>
             </div>
-
-            <div>
-                <a
-                    href='#login'
-                    style={{
-                        fontSize: '20px',
-                        fontWeight: '500',
-                        color: '#f3ebe2',
-                        textDecoration: 'none',
-                        alignItems: 'center',
-                        marginRight: '50px',
-                        padding: '10px 20px',
-                        borderRadius: '5px',
-                    }}
-                    onMouseEnter={e => {
-                        e.target.style.color = '#000';
-                        e.target.style.backgroundColor = '#eeb662';
-                    }}
-                    onMouseLeave={e => {
-                        e.target.style.color = '#f3ebe2';
-                        e.target.style.backgroundColor = 'transparent';
-                    }}
-                >
-                    Log In
-                </a>
-            </div>
-        </div>
-
-
-    </nav>
-  )
+        </nav>
+    );
 }
