@@ -4,6 +4,9 @@ import Hero from "../components/Hero"; // Importing the Home component
 import Navbar from "../components/Navbar";
 import Testimonals from "../components/Testimonals";
 import About from "../components/About";
+import Features from "../components/Features";
+import Footer from "../components/Footer";
+import DevelopersSection from "../components/DevelopersSection";
 
 export default function Home() {
   return (
@@ -17,6 +20,9 @@ export default function Home() {
           <Hero />
           <About />
           <Testimonals />
+          <Features />
+          <DevelopersSection />
+          <Footer />
         </main>
 
         {/* Footer */}
