@@ -3,6 +3,7 @@ import "../styles/Home.css"; // Importing the CSS file for Home component
 import Hero from "../components/Hero"; // Importing the Home component
 import Navbar from "../components/Navbar";
 import Testimonals from "../components/Testimonals";
+import About from "../components/About";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         {/* Main Content */}
         <main>
           <Hero />
+          <About />
           <Testimonals />
         </main>
 
