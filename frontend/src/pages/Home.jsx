@@ -7,6 +7,7 @@ import About from "../components/About";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import DevelopersSection from "../components/DevelopersSection";
+import Gallery from "../components/Gallery";
 
 export default function Home() {
   return (
@@ -19,8 +20,9 @@ export default function Home() {
         <main>
           <Hero />
           <About />
-          <Testimonals />
           <Features />
+          <Gallery />
+          <Testimonals />
           <DevelopersSection />
           <Footer />
         </main>
