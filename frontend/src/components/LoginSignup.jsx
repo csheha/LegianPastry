@@ -3,12 +3,8 @@ import "../styles/LoginSignup.css"; // Assuming you have a CSS file for styles
 import logo from "../assets/Frame.png"; // Adjust the path as necessary
 import { useState } from "react";
 
-export default function LoginSignup() {
+export default function LoginSignup({ onClose }) {
   const [activeTab, setActiveTab] = useState("login"); // Default to login tab
-
-  {
-    /* onClick={() => setActiveTab("login")} */
-  }
 
   return (
     <>
@@ -187,8 +183,6 @@ export default function LoginSignup() {
             </div>
           )}
         </div>
-
-        {/* Sign up tab plane */}
       </div>
     </>
   );

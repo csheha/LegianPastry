@@ -9,9 +9,6 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  {
-    /* Login Signup dailog box open state and methods*/
-  }
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const openLoginModal = () => {
