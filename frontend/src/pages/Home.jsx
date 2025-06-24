@@ -3,9 +3,11 @@ import "../styles/Home.css"; // Importing the CSS file for Home component
 import Hero from "../components/Hero"; // Importing the Home component
 import Navbar from "../components/Navbar";
 import Testimonals from "../components/Testimonals";
+import About from "../components/About";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import DevelopersSection from "../components/DevelopersSection";
+import Gallery from "../components/Gallery";
 
 export default function Home() {
   return (
@@ -17,8 +19,10 @@ export default function Home() {
         {/* Main Content */}
         <main>
           <Hero />
-          <Testimonals />
+          <About />
           <Features />
+          <Gallery />
+          <Testimonals />
           <DevelopersSection />
           <Footer />
         </main>
