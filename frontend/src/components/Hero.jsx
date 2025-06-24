@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Hero.css"; // Importing the CSS file for Hero component
+import styles from "../styles/liquidglass.module.css";
 
 export default function Hero() {
   return (
@@ -23,6 +24,7 @@ export default function Hero() {
               <button className="hero-section-action-button-text">
                 Start the class now
               </button>
+              <button className={styles.liquidglassButton}>Click Me</button>;
             </div>
           </div>
         </div>
