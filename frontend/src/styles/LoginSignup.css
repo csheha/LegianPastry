@@ -20,7 +20,7 @@
 /*Nav bar styles*/
 .Login-Navbar {
   display: flex;
-  height: 72px;
+  height: 52px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -128,7 +128,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: 10px;
   align-self: stretch;
 }
 .login-plane-section-title {
@@ -167,14 +167,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 14px;
   align-self: stretch;
 }
 .lpf-input-name {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 5px;
   align-self: stretch;
 }
 .Email {
@@ -185,7 +185,7 @@
   height: 48px;
   padding: 12px;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   align-self: stretch;
   border: 1px solid var(--Color-Neutral-black, #000);
 }
