@@ -1,0 +1,316 @@
+/* Login Page Styles */
+.login-main {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 75px;
+  border: 3px solid #fff;
+  background: linear-gradient(
+    122deg,
+    rgba(217, 217, 217, 0.62) 43.2%,
+    rgba(115, 115, 115, 0.16) 93.21%
+  );
+  box-shadow: 14px -1px 4px 0px #391f0692;
+  backdrop-filter: blur(20px);
+}
+/*Nav bar styles*/
+.Login-Navbar {
+  display: flex;
+  height: 72px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+}
+.Company-logo {
+  display: flex;
+  width: 200px;
+  height: 36px;
+  padding: 0px 7.333px 0px 6.667px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding-left: 80px;
+}
+.logo-wide {
+  width: 70px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/*Login Content*/
+
+.Login-Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.login-sub-content {
+  display: flex;
+  width: 480px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.login-sub {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+}
+.login-sub-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+.login-sub-content-wrapper-button {
+  display: flex;
+  height: 48px;
+  padding: 12px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border: none;
+}
+.login-sub-content-wrapper-button-text {
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.Rectanglelogin {
+  height: 1px;
+  align-self: stretch;
+  border: 1px solid var(--Border-primary, #ffb319);
+  background: var(--Border-primary, #ffb319);
+}
+.login-sub-content-button {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  color: var(--Border-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.login {
+  color: var(--Border-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.login-plane {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+.login-plane-section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+.login-plane-section-heading {
+  align-self: stretch;
+  color: var(--Text-primary, #000);
+  text-align: center;
+
+  /* Heading/Desktop/H2 */
+  font-family: Roboto;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 57.6px */
+}
+.login-plane-section-text {
+  align-self: stretch;
+  color: var(--Text-primary, #000);
+  text-align: center;
+
+  /* Text/Medium/Normal */
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+}
+.login-plane-forum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+.lpf-input-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+.Email {
+  align-self: stretch;
+}
+.text-input {
+  display: flex;
+  height: 48px;
+  padding: 12px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border: 1px solid var(--Color-Neutral-black, #000);
+}
+.lpf-input-password {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+.lpf-input-password-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+.lpf-password {
+  flex: 1 0 0;
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.lpf-forgotpassword {
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+.text-input {
+  display: flex;
+  height: 48px;
+  padding: 12px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+.lpf-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+.lpf-button {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+.lpf-button-login {
+  color: var(--Text-alternate, #fff);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  border: 1px solid var(--Color-Neutral-black, #000);
+  background: #ffb319;
+  padding: 10px 24px;
+}
+.lpf-button {
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+.lpf-button-text {
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.lpf-google-icon {
+  width: 24px;
+  height: 24px;
+}
+.lpf-button-google {
+  color: var(--Text-alternate, #fff);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  border: 1px solid var(--Color-Neutral-black, #000);
+  background: rgba(0, 0, 0, 0.87);
+  padding: 10px 24px;
+}
+/*Footer styles*/
+
+.Login-Footer {
+  width: 100%;
+  height: 24px;
+}
+.footer-login-text {
+  color: var(--Text-primary, #000);
+  text-align: center;
+
+  /* Text/Small/Normal */
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+}
