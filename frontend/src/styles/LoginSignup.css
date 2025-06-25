@@ -1,8 +1,12 @@
 /* Login Page Styles */
 .login-main {
-  position: relative;
+  position: absolute; /* Align relative to the page */
+  top: -200px; /* Distance from the top of the page */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for exact centering */
   display: flex;
   width: 1000px;
+  max-height: 80vh;
   margin: 0 auto;
   flex-direction: column;
   align-items: flex-start;
@@ -16,6 +20,33 @@
   box-shadow: 14px -1px 4px 0px #391f0692;
   backdrop-filter: blur(20px);
   padding-bottom: 20px;
+  overflow-y: auto;
+}
+.login-main::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
+}
+/* Example Close Button Style */
+.close-btn {
+  position: absolute; /* Position it relative to the page or nearest positioned parent */
+  top: 20px; /* Adjust based on your layout */
+  right: 20px; /* Adjust based on your layout */
+  z-index: 1000; /* Ensure it stays on top of other elements */
+  width: 38px;
+  height: 38px;
+  background-color: #ffb219c8; /* Replace with desired styles */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add a hover effect */
+.close-btn:hover {
+  background-color: #ffb319;
 }
 
 /*Nav bar styles*/

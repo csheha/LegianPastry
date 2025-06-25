@@ -7,8 +7,9 @@ export default function Model({ children, onClose }) {
       onClick={onClose}
       style={{
         position: "fixed",
-        top: 100,
+        top: 0,
         left: 0,
+        justifyContent: "center",
         width: "100vw",
         height: "90vh",
       }}
