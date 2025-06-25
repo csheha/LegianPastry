@@ -1,68 +1,98 @@
-import React, { useEffect, useState } from 'react';
-import burgerIcon from '../assets/burger.png';
-import '../styles/Navbar.css';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import burgerIcon from "../assets/burger.png";
+import "../styles/Navbar.css";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Model from "../components/Model.jsx";
+import LoginSignup from "./LoginSignup.jsx";
 
 const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Classes', href: '#class' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Gallery', href: '#gallery' },
+  { name: "About", href: "#about" },
+  { name: "Classes", href: "#class" },
+  { name: "Contact", href: "#contact" },
+  { name: "Gallery", href: "#gallery" },
 ];
 
 export default function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-    const toggleMenu = () => setMenuOpen(prev => !prev);
+  const openLoginModal = () => {
+    console.log("Login modal opened");
+    setIsLoginModalOpen(true);
+  };
+  const closeLoginModal = () => {
+    console.log("Login modal closed");
+    setIsLoginModalOpen(false);
+  };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
-        };
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
-    return (
-        <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
-            <div className="navbar-container">
-                <div className="navbar-logo">
-                    <a href="#hero">
-                        <img src={burgerIcon} alt="Burger Icon" />
-                        <span>LegianPastry</span>
-                    </a>
-                </div>
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
 
-                <div className={`navbar-content ${menuOpen ? 'responsive_nav' : ''}`}>
-                    <div className="close-button">
-                        <button onClick={toggleMenu}>
-                            <FaTimes size={20} className='fa-close'/>
-                        </button>
-                    </div>
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-                    <div className="navbar-links">
-                        {navItems.map((item, key) => (
-                            <a key={key} href={item.href} onClick={() => setMenuOpen(false)}>
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
+  return (
+    <>
+      <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
+        <div className="navbar-container">
+          <div className="navbar-logo">
+            <a href="#hero">
+              <img src={burgerIcon} alt="Burger Icon" />
+              <span>LegianPastry</span>
+            </a>
+          </div>
 
-                    <div className="navbar-login">
-                        <a href="#login" onClick={() => setMenuOpen(false)}>Log In</a>
-                    </div>
-
-
-                </div>
-
-                <div className="menu-icon">
-                    <button onClick={toggleMenu}>
-                        <FaBars size={28} className='fa-menu' />
-                    </button>
-                </div>
+          <div className={`navbar-content ${menuOpen ? "responsive_nav" : ""}`}>
+            <div className="close-button">
+              <button onClick={toggleMenu}>
+                <FaTimes size={20} className="fa-close" />
+              </button>
             </div>
-        </nav>
-    );
+
+            <div className="navbar-links">
+              {navItems.map((item, key) => (
+                <a
+                  key={key}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+
+            <div className="navbar-login">
+              <a
+                href="#login"
+                onClick={() => {
+                  setMenuOpen(false);
+                  openLoginModal();
+                }}
+              >
+                Login
+              </a>
+            </div>
+          </div>
+
+          <div className="menu-icon">
+            <button onClick={toggleMenu}>
+              <FaBars size={28} className="fa-menu" />
+            </button>
+          </div>
+        </div>
+      </nav>
+      {isLoginModalOpen && (
+        <Model>
+          <LoginSignup onClose={closeLoginModal} />
+        </Model>
+      )}
+    </>
+  );
 }
