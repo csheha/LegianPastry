@@ -1,11 +1,21 @@
-import React from "react";
-import "../styles/Model.css"; // Updated CSS file with scoped styles
+import "../styles/Model.css";
 
-export default function Modal({ children, onClose }) {
+export default function Model({ children, onClose }) {
   return (
-    <>
-      <div className="legian-backdrop" onClick={onClose}></div>
-      <div className="legian-modal">{children}</div>
-    </>
+    <div
+      className="modal"
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        top: 100,
+        left: 0,
+        width: "100vw",
+        height: "90vh",
+      }}
+    >
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>
   );
 }

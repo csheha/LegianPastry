@@ -1,5 +1,6 @@
 /* Login Page Styles */
 .login-main {
+  position: relative;
   display: flex;
   width: 1000px;
   margin: 0 auto;
@@ -190,8 +191,20 @@
   border: 1px solid var(--Color-Neutral-black, #000);
 }
 .placeholder {
-  color: var(--Text-placeholder, #999);
+  background: transparent;
+  border: none;
+  outline: none; /* Removes default outline */
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+  color: #333; /* Text color */
 }
+.placeholder:focus {
+  outline: none; /* Removes default browser focus styles */
+  border-bottom: 2px solid #ffa600; /* Adds custom focus indicator */
+  transition: border-bottom 0.2s ease-in-out; /* Smooth transition */
+}
+
 .lpf-input-password {
   display: flex;
   flex-direction: column;

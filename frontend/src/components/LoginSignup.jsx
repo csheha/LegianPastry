@@ -4,13 +4,16 @@ import logo from "../assets/Frame.png"; // Adjust the path as necessary
 import { useState } from "react";
 
 export default function LoginSignup({ onClose }) {
+  //inside login box navbar switch between login and signup
   const [activeTab, setActiveTab] = useState("login"); // Default to login tab
 
   return (
     <>
       <div className="login-main">
         {/* Login tab plane */}
-
+        <button className="close-btn" onClick={onClose}>
+          ×
+        </button>
         <div className="Login-Navbar">
           <div className="Company-logo">
             <div className="logo-wide">
@@ -50,9 +53,14 @@ export default function LoginSignup({ onClose }) {
                 </div>
                 <div className="login-plane-forum">
                   <div className="lpf-input-name">
-                    <span className="Email">Email</span>
+                    <label className="Email">Email</label>
                     <div className="text-input">
-                      <span className="placeholder">Enter your email</span>
+                      <input
+                        type="email"
+                        id="email"
+                        className="placeholder"
+                        placeholder="Enter your email"
+                      />
                     </div>
                   </div>
                   <div className="lpf-input-password">
@@ -63,7 +71,12 @@ export default function LoginSignup({ onClose }) {
                       </span>
                     </div>
                     <div className="text-input">
-                      <span className="placeholder">Enter your password</span>
+                      <input
+                        type="password"
+                        id="password"
+                        className="placeholder"
+                        placeholder="Enter your password"
+                      />
                     </div>
                   </div>
                   <div className="lpf-buttons">
