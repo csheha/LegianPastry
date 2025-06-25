@@ -8,6 +8,7 @@ import Features from "../components/Features";
 import Footer from "../components/Footer";
 import DevelopersSection from "../components/DevelopersSection";
 import Gallery from "../components/Gallery";
+import Class from "../components/Class";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           <Features />
           <Gallery />
           <Testimonals />
+          <Class />
           <DevelopersSection />
           <Footer />
         </main>
