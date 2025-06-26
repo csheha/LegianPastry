@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/Class.css';
+import { useNavigate } from 'react-router-dom';
 
 import video01 from '../assets/videos/Food01.mp4';
 import video02 from '../assets/videos/Food02.mp4';
@@ -34,6 +35,12 @@ const videos = [
 ];
 
 export default function Class() {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/class');
+    }
+
   return (
     <div id='class' className='class-section'>
       <div className="class-container">
@@ -43,7 +50,7 @@ export default function Class() {
                 <h1>Explore amazing classes from our chefs around the world!</h1>
             </div>
             <div className="button">
-                <button className="class-btn">
+                <button className="class-btn" onClick={handleClick}>
                     <span>Explore Classes</span>
                 </button>
             </div>  
