@@ -5,6 +5,7 @@ import "aos/dist/aos.css"; // Import AOS styles
 import AOS from "aos"; // Import AOS library
 
 import Home from "./pages/Home"; // Importing the Home component
+import Gallery from "./pages/Gallery";
 import Auth from "../src/components/Auth"; // Importing the Auth component
 import LoginSignup from "../src/components/LoginSignup"; // Importing the LoginSignup component
 
@@ -22,6 +23,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<LoginSignup />} />
       </Routes>

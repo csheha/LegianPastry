@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
     "@react-oauth/google": "^0.12.2",
     "aos": "^2.3.4",
     "appwrite": "^18.1.1",
