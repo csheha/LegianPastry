@@ -5,6 +5,7 @@ import "aos/dist/aos.css"; // Import AOS styles
 import AOS from "aos"; // Import AOS library
 
 import Home from "./pages/Home"; // Importing the Home component
+import Gallery from "./pages/Gallery";
 
 export default function App() {
   // Initialize AOS
@@ -20,6 +21,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </BrowserRouter>
   );
