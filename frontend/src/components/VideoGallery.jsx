@@ -89,14 +89,14 @@ export default function FoodGallery() {
     return (
         <>
             <div className={model? "model open" : "model"}>
-                <video src={tempVideoSrc} controls autoplay />
+                <video src={tempVideoSrc} controls autoPlay />
                 <CloseIcon onClick={() => setModel(false)} />
             </div>
             <div className='gallery'>
-                {foodVideos.map((item) => {
+                {foodVideos.map((item, index) => {
                     return (
-                        <div className='videos' key={item.id} onClick={() => getVideo(item.videoSrc)}title={item.food}>
-                            <video src={item.videoSrc} controls style={{width: '100%'}} />
+                        <div className='videos' key={item.id} onClick={() => getVideo(item.videoSrc)} title={item.food}>
+                            <video src={item.videoSrc} controls style={{ width: '100%' }} />
                             <h4>{item.food}</h4>
                             <p>{item.chef}</p>
                         </div>
