@@ -13,8 +13,10 @@
     transition: all 350s ease;
     cursor: pointer;
     margin-bottom: 12px;
-    background-color: #427aa1;
+    background-color: #E2DDD8;
     padding: 10px;
+    break-inside: avoid;
+    border-radius: 8px;
 }
 
 .gallery .videos:hover {
@@ -22,12 +24,20 @@
     transform: scale(1.5);
 }
 
+.videos video {
+  border-radius: 8px;
+}
+
 .gallery .videos h4,
 .gallery .videos p {
   margin: 4px;
   text-align: center;
-  color: white;
+  color: black;
   font-family: 'Inria Serif', serif;
+}
+
+p {
+  font-style: italic;
 }
 
 @media (max-width: 991px) {
