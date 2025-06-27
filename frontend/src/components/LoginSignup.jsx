@@ -6,7 +6,6 @@ import { useState } from "react";
 export default function LoginSignup({ onClose }) {
   //inside login box navbar switch between login and signup
   const [activeTab, setActiveTab] = useState("login"); // Default to login tab
-
   return (
     <>
       <div className="login-main">
@@ -141,32 +140,63 @@ export default function LoginSignup({ onClose }) {
                 </div>
                 <div className="login-plane-forum">
                   <div className="lpf-input-name">
-                    <span className="Email">Username</span>
+                    <label className="Email">Email</label>
                     <div className="text-input">
-                      <span className="placeholder">Enter your Name</span>
+                      <input
+                        type="email"
+                        id="email"
+                        className="placeholder"
+                        placeholder="Enter your email"
+                      />
                     </div>
                   </div>
                   <div className="lpf-input-name">
-                    <span className="Email">Address</span>
+                    <label className="Email">Username</label>
                     <div className="text-input">
-                      <span className="placeholder">Enter your Address</span>
+                      <input
+                        type="text"
+                        id="username"
+                        className="placeholder"
+                        placeholder="Enter your username"
+                      />
                     </div>
                   </div>
                   <div className="lpf-input-name">
-                    <span className="Email">Contact Number</span>
+                    <label className="Email">Address</label>
                     <div className="text-input">
-                      <span className="placeholder">+94 785691234</span>
+                      <input
+                        type="text"
+                        id="address"
+                        className="placeholder"
+                        placeholder="Enter your address"
+                      />
+                    </div>
+                  </div>
+                  <div className="lpf-input-name">
+                    <label className="Email">Contact Number</label>
+                    <div className="text-input">
+                      <input
+                        type="tel"
+                        id="contactnumber"
+                        className="placeholder"
+                        placeholder="+94 785691234"
+                      />
                     </div>
                   </div>
                   <div className="lpf-input-password">
                     <div className="lpf-input-password-label">
-                      <span className="lpf-password">Password</span>
+                      <label className="lpf-password">Password</label>
                       <span className="lpf-forgotpassword">
-                        Forgot your password
+                        Forgot Your password
                       </span>
                     </div>
                     <div className="text-input">
-                      <span className="placeholder">Enter your password</span>
+                      <input
+                        type="password"
+                        id="password"
+                        className="placeholder"
+                        placeholder="Enter your password"
+                      />
                     </div>
                   </div>
                   <div className="lpf-buttons">
