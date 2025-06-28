@@ -8,7 +8,8 @@ import Home from "./pages/Home"; // Importing the Home component
 import Gallery from "./pages/Gallery";
 import Auth from "../src/components/Auth"; // Importing the Auth component
 import LoginSignup from "../src/components/LoginSignup"; // Importing the LoginSignup component
-import Class from '../src/pages/Class';
+import Class from "../src/pages/Class";
+import AdminDashboard from "./pages/AdminDashboard";
 
 export default function App() {
   // Initialize AOS
@@ -28,6 +29,8 @@ export default function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/class" element={<Class />} />
+        {/*Admin AdminDashboard*/}
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

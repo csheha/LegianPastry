@@ -1,0 +1,291 @@
+.Admin-Dashboard {
+  display: flex;
+
+  align-items: flex-start;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 179, 25, 0.2) 0%,
+      rgba(255, 179, 25, 0.2) 100%
+    ),
+    #fff;
+}
+
+/* Admin side bar styles*/
+.Admin-Side-bar {
+  display: flex;
+  height: 100vh;
+  padding-top: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-right: 1px solid var(--Border-primary, #000);
+  background: linear-gradient(
+    71deg,
+    rgba(57, 31, 6, 0.95) 19.38%,
+    #9f5611 80.62%
+  );
+}
+
+.A-nav-button {
+  background-color: #9a6738;
+  border: none;
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.A-nav-button:hover {
+  background-color: #9a6738;
+  color: #c9ad9b;
+}
+.A-nav-button:active {
+  background-color: #9a6738;
+  transform: scale(0.95);
+}
+.A-admin-options {
+  padding-left: 0px;
+  padding: 20px 10px 20px 0px;
+  color: var(--Text-primary, #edb678);
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 150%;
+  background: transparent;
+  border: none;
+}
+.A-admin-options :hover {
+  color: var(--Text-hover, #e27e04);
+  background-color: var(--Hover-bg, #f9f9f9);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.A-menu-top {
+  display: flex;
+  padding: 16px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+.A-menu-top-raw {
+  display: flex;
+  height: 32px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+.A-menu-login-logo {
+  display: flex;
+  width: 156px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  mix-blend-mode: plus-lighter;
+}
+.A-menu-logo {
+  width: 156px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.A-menu-middle {
+  display: flex;
+  padding: 8px 16px 24px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.A-Nav-home {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+
+  width: 100%;
+}
+.A-Navcontent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+}
+.A-Navicon-home {
+  width: 24px;
+  height: 24px;
+}
+.A-Navhome-text {
+  flex: 1 0 0;
+  color: var(--Text-primary, #000);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+
+.A-Nav-user {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  padding-left: 10px;
+  width: 100%;
+}
+.A-usermanagement {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+}
+.A-user-icon-circle {
+  width: 24px;
+  height: 24px;
+}
+.A-user-icon {
+  width: 24px;
+  height: 24px;
+}
+.A-usermanagement-text {
+  flex: 1 0 0;
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.A-Nav-classes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  padding-left: 10px;
+  width: 100%;
+}
+.A-classesmanagement {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+}
+.A-class-icon-circle {
+  display: flex;
+  width: 24px;
+  height: 24px;
+}
+.A-class-icon {
+  width: 24px;
+  height: 24px;
+}
+.A-classesmanagement-text {
+  flex: 1 0 0;
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.A-Nav-gallery {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  padding-left: 10px;
+  width: 100%;
+}
+.A-gallerymanagement {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+}
+.A-gallery-icon-circle {
+  width: 24px;
+  height: 24px;
+}
+.A-gallery-icon {
+  width: 24px;
+  height: 24px;
+}
+.A-gallerymanagement-text {
+  flex: 1 0 0;
+  color: var(--Text-primary, #000);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+
+.A-menu-bottom {
+  display: flex;
+  padding: 0px 16px 24px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+.A-menu-bottom-list {
+  display: flex;
+  padding: 0px 16px 24px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+.A-menu-bottom-list:hover {
+  color: #ffffff;
+}
+.A-menu-bottom-nav {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+.A-menu-bottom-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+}
+.A-bottom-logo-content {
+  width: 24px;
+  height: 24px;
+}
+.A-menu-bottom-c-text {
+  flex: 1 0 0;
+  color: var(--Text-primary, #000);
+
+  /* Text/Regular/Normal */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+
+/* Admin Main Right side styles*/
+.Admin-Main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: #a38a58e8;
+}
+
+/* Admin top-bar styles*/

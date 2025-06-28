@@ -31,7 +31,11 @@ export const signup = async (req, res) => {
     const savedUser = await newUser.save();
 
     //5. Return Success Response
-    res.status(200).send("User Registration successfull!", newUser);
+    res.status(200).send({
+      success: true,
+      message: "User Registration successfull!",
+      data: newUser,
+    });
   } catch (err) {
     console.error("User Registration error:", err);
     res.status(500).send("Internal Server Error");
@@ -110,7 +114,7 @@ export const editUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   //retrieve userId
-  const { userId } = req.params._id;
+  const { userId } = req.params;
   try {
     //validate input
     if (!userId) {
@@ -124,9 +128,62 @@ export const deleteUser = async (req, res) => {
       return res.status(404).send("User not found");
     }
     //send a response
-    res.status(200).send("User deleted successfully");
+    res.status(200).send({
+      success: true,
+      message: "User deleted successfully",
+      data: deletedUser,
+    });
   } catch (err) {
     console.error("Error deleting user:", err);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export const getUser = async (req, res) => {
+  //retrieve userId
+  const { userId } = req.params;
+  try {
+    //validate input
+    if (!userId) {
+      return res.status(400).send("User ID is required");
+    }
+    //check user exist
+    const getUser = await User.findById(userId);
+
+    //find and fetch user
+    if (!getUser) {
+      return res.status(404).send("User not found");
+    }
+    //send a response
+    res.status(200).send({
+      success: true,
+      message: "User details fetch successfully",
+      data: getUser,
+    });
+  } catch (err) {
+    console.error("Error fetching user:", err);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export const getUsers = async (req, res) => {
+  try {
+    //check user exist
+    const getUsers = await User.find();
+
+    //find and fetch users
+    if (!getUsers) {
+      return res.status(400).send("Users do not exist");
+    }
+
+    //send a response
+    res.status(200).send({
+      success: true,
+      message: "Users details fetch successfully",
+      data: getUsers,
+    });
+  } catch (err) {
+    console.error("Error fetching user:", err);
     res.status(500).send("Internal Server Error");
   }
 };

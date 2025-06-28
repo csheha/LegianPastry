@@ -29,14 +29,14 @@ export default function Features() {
           <div
             className="features-images"
             data-aos="fade-up"
-            data-aos-duration="2000"
+            data-aos-duration="1000"
           >
             <img className="feature-image1" src={smallImage} alt="image1" />
           </div>
           <div
             className="feature-list"
             data-aos="fade-left"
-            data-aos-duration="800"
+            data-aos-duration="1000"
           >
             {featuresData.map((feature, index) => (
               <div className="feture-list-item">

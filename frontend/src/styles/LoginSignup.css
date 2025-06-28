@@ -451,6 +451,11 @@
   height: 24px;
   padding: 0px;
 }
+.lpf-login-google {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
 .lpf-button-google {
   display: flex;
   justify-content: space-between;
@@ -540,4 +545,23 @@
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 21px */
+}
+.admin-login {
+  display: flex;
+  width: 100%;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 19px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: conic-gradient(
+      from 14deg at 50% 50%,
+      rgba(255, 255, 255, 0.03) 0deg,
+      rgba(255, 255, 255, 0.01) 360deg
+    ),
+    rgba(183, 174, 156, 0.37);
+  box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5),
+    0px 8px 32px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
 }

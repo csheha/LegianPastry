@@ -7,6 +7,9 @@
   padding: 0px 0px;
   margin: 0 auto;
   justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #040404;
 }
 .heading-testimonials {
   color: #9f5611;

@@ -90,7 +90,18 @@
   align-items: center;
   gap: 8px;
   border: 1px solid var(--Color-Neutral-black, #000);
-  background: #ffb319;
+
+  border-radius: 19px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: conic-gradient(
+      from 14deg at 50% 50%,
+      rgba(255, 255, 255, 0.03) 0deg,
+      rgba(255, 255, 255, 0.01) 360deg
+    ),
+    rgba(255, 179, 25, 0.8);
+  box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5),
+    0px 8px 32px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
 }
 .footer-button-text1 {
   color: var(--Text-alternate, #fff);
