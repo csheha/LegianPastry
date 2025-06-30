@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/AdminDashboard.css";
 import Logo from "../assets/Frame.png";
+import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
+import HomeIcon from "@mui/icons-material/Home";
+import CollectionsIcon from "@mui/icons-material/Collections";
+import SchoolIcon from "@mui/icons-material/School";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import UserManagement from "../components/UserManagement";
 
 export default function AdminDashboard() {
+  //to handle user,gallery and classes management
+  const [isUser, setIsUser] = useState(true);
+  const [isClass, setIsClass] = useState(false);
+  const [isGallery, setIsGallery] = useState(false);
+
+  const HandleIsUser = async () => {
+    setIsUser(true);
+    setIsClass(false);
+    setIsGallery(false);
+  };
+  const HandleIsClass = async () => {
+    setIsClass(true);
+    setIsUser(false);
+    setIsGallery(false);
+  };
+  const HandleIsGallery = async () => {
+    setIsGallery(true);
+    setIsClass(false);
+    setIsUser(false);
+  };
   return (
     <>
       <div className="Admin-Dashboard">
@@ -23,18 +49,7 @@ export default function AdminDashboard() {
                   <div className="A-Navicon-home">
                     <div className="A-user-icon-circle">
                       <div className="A-user-icon">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M3.00003 13H4.00003V20C4.00003 21.103 4.89703 22 6.00003 22H18C19.103 22 20 21.103 20 20V13H21C21.1978 12.9999 21.3911 12.9412 21.5555 12.8314C21.7199 12.7215 21.848 12.5653 21.9237 12.3826C21.9994 12.1999 22.0192 11.9989 21.9806 11.8049C21.942 11.611 21.8468 11.4328 21.707 11.293L12.707 2.29296C12.6142 2.20001 12.504 2.12627 12.3827 2.07596C12.2614 2.02565 12.1314 1.99976 12 1.99976C11.8687 1.99976 11.7387 2.02565 11.6173 2.07596C11.496 2.12627 11.3858 2.20001 11.293 2.29296L2.29303 11.293C2.15322 11.4328 2.05802 11.611 2.01945 11.8049C1.98088 11.9989 2.00068 12.1999 2.07635 12.3826C2.15202 12.5653 2.28016 12.7215 2.44457 12.8314C2.60898 12.9412 2.80228 12.9999 3.00003 13ZM10 20V15H14V20H10ZM12 4.41396L18 10.414L18.001 20H16V15C16 13.897 15.103 13 14 13H10C8.89703 13 8.00003 13.897 8.00003 15V20H6.00003V10.414L12 4.41396Z"
-                            fill="black"
-                          />
-                        </svg>
+                        <HomeIcon />
                       </div>
                     </div>
                   </div>
@@ -44,22 +59,11 @@ export default function AdminDashboard() {
             </div>
             <button className="A-admin-options">Admin Operations</button>
             <div className="A-Nav-user">
-              <button className="A-nav-button">
+              <button className="A-nav-button" onClick={HandleIsUser}>
                 <div className="A-usermanagement">
                   <div className="A-user-icon-circle">
                     <div className="A-user-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                      >
-                        <path
-                          d="M3.85 15.1C4.7 14.45 5.65 13.9375 6.7 13.5625C7.75 13.1875 8.85 13 10 13C11.15 13 12.25 13.1875 13.3 13.5625C14.35 13.9375 15.3 14.45 16.15 15.1C16.7333 14.4167 17.1875 13.6417 17.5125 12.775C17.8375 11.9083 18 10.9833 18 10C18 7.78333 17.2208 5.89583 15.6625 4.3375C14.1042 2.77917 12.2167 2 10 2C7.78333 2 5.89583 2.77917 4.3375 4.3375C2.77917 5.89583 2 7.78333 2 10C2 10.9833 2.1625 11.9083 2.4875 12.775C2.8125 13.6417 3.26667 14.4167 3.85 15.1ZM10 11C9.01667 11 8.1875 10.6625 7.5125 9.9875C6.8375 9.3125 6.5 8.48333 6.5 7.5C6.5 6.51667 6.8375 5.6875 7.5125 5.0125C8.1875 4.3375 9.01667 4 10 4C10.9833 4 11.8125 4.3375 12.4875 5.0125C13.1625 5.6875 13.5 6.51667 13.5 7.5C13.5 8.48333 13.1625 9.3125 12.4875 9.9875C11.8125 10.6625 10.9833 11 10 11ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z"
-                          fill="#1D1B20"
-                        />
-                      </svg>
+                      <AccountCircleIcon />
                     </div>
                   </div>
                   <span className="A-usermanagement-text">User Management</span>
@@ -67,22 +71,11 @@ export default function AdminDashboard() {
               </button>
             </div>
             <div className="A-Nav-classes">
-              <button className="A-nav-button">
+              <button className="A-nav-button" onClick={HandleIsClass}>
                 <div className="A-classesmanagement">
                   <div className="A-class-icon-circle">
                     <div className="A-class-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M4 20C3.45 20 2.975 19.8083 2.575 19.425C2.19167 19.025 2 18.55 2 18V6C2 5.45 2.19167 4.98333 2.575 4.6C2.975 4.2 3.45 4 4 4H16C16.55 4 17.0167 4.2 17.4 4.6C17.8 4.98333 18 5.45 18 6V10.5L22 6.5V17.5L18 13.5V18C18 18.55 17.8 19.025 17.4 19.425C17.0167 19.8083 16.55 20 16 20H4ZM4 18H16V6H4V18ZM4 18V6V18Z"
-                          fill="#1D1B20"
-                        />
-                      </svg>
+                      <SchoolIcon />
                     </div>
                   </div>
 
@@ -93,30 +86,11 @@ export default function AdminDashboard() {
               </button>
             </div>
             <div className="A-Nav-gallery">
-              <button className="A-nav-button">
+              <button className="A-nav-button" onClick={HandleIsGallery}>
                 <div className="A-gallerymanagement">
                   <div className="A-gallery-icon-circle">
                     <div className="A-gallery-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M22.0001 7.99899C21.9999 7.82052 21.9519 7.64535 21.8612 7.49166C21.7705 7.33798 21.6402 7.21137 21.4841 7.12499L12.4621 2.12499C12.3138 2.04332 12.1473 2.00049 11.9781 2.00049C11.8088 2.00049 11.6423 2.04332 11.4941 2.12499L2.51607 7.08499C2.3601 7.17136 2.23006 7.29785 2.13941 7.45136C2.04876 7.60487 2.0008 7.77983 2.00049 7.95811C2.00018 8.13639 2.04754 8.31151 2.13767 8.46534C2.22779 8.61916 2.3574 8.7461 2.51307 8.83299L11.5351 13.873C11.6836 13.9564 11.8511 14.0004 12.0214 14.0005C12.1918 14.0007 12.3594 13.9571 12.5081 13.874L21.4861 8.87399C21.642 8.78727 21.7719 8.6604 21.8623 8.50654C21.9527 8.35268 22.0002 8.17744 22.0001 7.99899ZM12.0231 11.854L5.06007 7.96499L11.9771 4.14299L18.9411 8.00199L12.0231 11.854Z"
-                          fill="black"
-                        />
-                        <path
-                          d="M20.515 11.126L12 15.856L3.48504 11.126L2.51404 12.874L11.514 17.874C11.6626 17.9565 11.8296 17.9997 11.9995 17.9997C12.1694 17.9997 12.3365 17.9565 12.485 17.874L21.485 12.874L20.515 11.126Z"
-                          fill="black"
-                        />
-                        <path
-                          d="M20.515 15.126L12 19.856L3.48504 15.126L2.51404 16.874L11.514 21.874C11.6626 21.9565 11.8296 21.9997 11.9995 21.9997C12.1694 21.9997 12.3365 21.9565 12.485 21.874L21.485 16.874L20.515 15.126Z"
-                          fill="black"
-                        />
-                      </svg>
+                      <CollectionsIcon />
                     </div>
                   </div>
 
@@ -180,9 +154,46 @@ export default function AdminDashboard() {
         </div>
         {/* Right Side */}
         <div className="Admin-Main-content">
-          <div className="top-bar"></div>
-          <div className="top-bar"></div>
-          <div className="top-bar"></div>
+          <div className="A-top-bar">
+            <div className="A-topbar-container">
+              <div className="A-tb-profile">
+                <SupervisedUserCircleIcon />
+                <span className="A-tb-admin">Admin Name</span>
+              </div>
+            </div>
+          </div>
+
+          {/*Here the changing components*/}
+          {/*User Management*/}
+          {isUser && (
+            <>
+              <div className="top-bar-head">
+                <span className="top-bar-head-text">User Management</span>
+              </div>
+              <div className="top-bar-mainsection">
+                <UserManagement />
+              </div>
+            </>
+          )}
+
+          {/*Class Management*/}
+          {isClass && (
+            <>
+              <div className="top-bar-head">
+                <span className="top-bar-head-text">Class Management</span>
+              </div>
+              <div className="top-bar-mainsection">class table</div>
+            </>
+          )}
+          {/*Gallery Management*/}
+          {isGallery && (
+            <>
+              <div className="top-bar-head">
+                <span className="top-bar-head-text">Gallery Management</span>
+              </div>
+              <div className="top-bar-mainsection">gallery table</div>
+            </>
+          )}
         </div>
       </div>
     </>
