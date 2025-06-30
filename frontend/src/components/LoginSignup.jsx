@@ -2,18 +2,91 @@ import React from "react";
 import "../styles/LoginSignup.css"; // Assuming you have a CSS file for styles
 import logo from "../assets/Frame.png"; // Adjust the path as necessary
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+//Integrate Google Login
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+
+const API_BASE_URL = "http://localhost:5000";
 
 export default function LoginSignup({ onClose }) {
   //inside login box navbar switch between login and signup
   const [activeTab, setActiveTab] = useState("login"); // Default to login tab
+
+  //UseStates for handle use login
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [address, setAddress] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  //using use Navigate hook
+  const navigate = useNavigate();
+
+  //Login Handle function
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(`${API_BASE_URL}/auth/login`, {
+        email,
+        password,
+      });
+      setMessage(`Login successful! Token: ${res.data.token} `);
+
+      // Close the modal
+      if (onClose) {
+        onClose();
+      }
+      //navigate to home
+      navigate("/");
+      console.log(`Login successful! Token: ${res.data.token} `);
+    } catch (err) {
+      setMessage(
+        err.response?.data?.message || "Login failed. Check your credentials."
+      );
+    }
+  };
+
+  //SignUp Handle function
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(`${API_BASE_URL}/auth/signup`, {
+        email,
+        username,
+        address,
+        contactNumber,
+        password,
+      });
+      setMessage(`SignUp successful! `);
+
+      console.log(`SignUp successful! `);
+      //navigate to login
+      setActiveTab("login");
+    } catch (err) {
+      setMessage(
+        err.response?.data?.message || "Signup failed. Please try again."
+      );
+    }
+  };
+
+  //admin button handle function
+  const handleAdminClick = () => {
+    navigate("/admin");
+  };
+
   return (
     <>
       <div className="login-main">
-        {/* Login tab plane */}
-        <button className="close-btn" onClick={onClose}>
-          ×
-        </button>
         <div className="Login-Navbar">
+          {/* Login tab plane */}
+          <button className="close-btn" onClick={onClose}>
+            ×
+          </button>
           <div className="Company-logo">
             <div className="logo-wide">
               <img src={logo} alt="img" />
@@ -50,7 +123,7 @@ export default function LoginSignup({ onClose }) {
                     Welcome Back! Let's Savor the Sweetness
                   </div>
                 </div>
-                <div className="login-plane-forum">
+                <form className="login-plane-forum" onSubmit={handleLogin}>
                   <div className="lpf-input-name">
                     <label className="Email">Email</label>
                     <div className="text-input">
@@ -59,6 +132,7 @@ export default function LoginSignup({ onClose }) {
                         id="email"
                         className="placeholder"
                         placeholder="Enter your email"
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -75,6 +149,7 @@ export default function LoginSignup({ onClose }) {
                         id="password"
                         className="placeholder"
                         placeholder="Enter your password"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                   </div>
@@ -98,11 +173,48 @@ export default function LoginSignup({ onClose }) {
                         </svg>
                       </div>
                       <button className="lpf-button-google">
-                        Login with Google
+                        <GoogleLogin
+                          onSuccess={(credentialResponse) => {
+                            console.log(credentialResponse);
+                            console.log(
+                              jwtDecode(credentialResponse.credential)
+                            );
+                            navigate("/"); // Redirect to home page after successful login
+                          }}
+                          onError={() => {
+                            console.log("Google Login Failed");
+                          }}
+                          render={(renderProps) => (
+                            <button
+                              onClick={renderProps.onClick}
+                              disabled={renderProps.disabled}
+                            >
+                              <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                                alt="Google logo"
+                                className="lpf-login-google"
+                              />
+                              Login with Google
+                            </button>
+                          )}
+                        />
                       </button>
                     </div>
                   </div>
-                </div>
+                </form>
+                <button className="admin-login" onClick={handleAdminClick}>
+                  Admin
+                </button>
+                {message && (
+                  <p
+                    style={{
+                      marginTop: 10,
+                      color: message.includes("successful") ? "yellow" : "red",
+                    }}
+                  >
+                    {message}
+                  </p>
+                )}
               </div>
             </div>
           )}
@@ -131,7 +243,7 @@ export default function LoginSignup({ onClose }) {
                 <div className="Rectanglelogin"></div>
               </div>
 
-              <div className="login-plane">
+              <form className="login-plane" onSubmit={handleSignUp}>
                 <div className="login-plane-section-title">
                   <div className="login-plane-section-heading">Sign Up</div>
                   <div className="login-plane-section-text">
@@ -147,6 +259,7 @@ export default function LoginSignup({ onClose }) {
                         id="email"
                         className="placeholder"
                         placeholder="Enter your email"
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -158,6 +271,7 @@ export default function LoginSignup({ onClose }) {
                         id="username"
                         className="placeholder"
                         placeholder="Enter your username"
+                        onChange={(e) => setUsername(e.target.value)}
                       />
                     </div>
                   </div>
@@ -169,6 +283,7 @@ export default function LoginSignup({ onClose }) {
                         id="address"
                         className="placeholder"
                         placeholder="Enter your address"
+                        onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
                   </div>
@@ -180,6 +295,7 @@ export default function LoginSignup({ onClose }) {
                         id="contactnumber"
                         className="placeholder"
                         placeholder="+94 785691234"
+                        onChange={(e) => setContactNumber(e.target.value)}
                       />
                     </div>
                   </div>
@@ -196,6 +312,9 @@ export default function LoginSignup({ onClose }) {
                         id="password"
                         className="placeholder"
                         placeholder="Enter your password"
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -222,7 +341,10 @@ export default function LoginSignup({ onClose }) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
+              <button className="admin-login" onClick={handleAdminClick}>
+                Admin
+              </button>
             </div>
           )}
         </div>

@@ -82,28 +82,74 @@
   flex: 1 0 0;
   width: 50%;
   border-radius: 100px;
-  background: #d7b99c;
+  background: transparent;
   display: flex;
   justify-content: center; /* Horizontally center */
   align-items: center;
 }
+.hero-section-animationbox {
+  height: 600px;
+  flex: 1 0 0;
+  border-radius: 100px;
+
+  display: flex; /* Add this */
+  align-items: center; /* Add this */
+  justify-content: center; /* Add this */
+  overflow: hidden;
+  padding: -20px;
+  border-radius: 10px;
+  padding-top: 10px;
+
+  background: conic-gradient(
+      from 14deg at 50% 50%,
+      rgba(255, 255, 255, 0.03) 0deg,
+      rgba(255, 255, 255, 0.01) 360deg
+    ),
+    #dda15e;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.lottie-no-watermark {
+  padding-top: 10px;
+  background: transparent;
+  height: 700px;
+}
+.hero-section-animationbox::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 40px;
+  right: 40px;
+  height: 20px;
+  background: conic-gradient(
+      from 14deg at 50% 50%,
+      rgba(255, 255, 255, 0.03) 0deg,
+      rgba(255, 255, 255, 0.01) 360deg
+    ),
+    #dda15e;
+  border-radius: 100px;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .hero-section-placeholder-button {
   width: 128px;
   height: 102.4px;
   flex-shrink: 0;
   display: flex;
-  justify-content: center; /* Horizontally center */
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   background: transparent;
   border: none;
+  position: relative; /* Add this */
+  z-index: 2; /* Add this - button on top */
 }
+
 .play-button {
   width: 64px;
   height: 64px;
   flex-shrink: 0;
 }
-
 /*Responsive*/
 /* Medium screens (tablets) - 768px to 1023px */
 @media (max-width: 1023px) {
