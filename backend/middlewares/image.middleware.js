@@ -1,5 +1,6 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 // Configure storage: where and how to save uploaded files
 const storage = multer.memoryStorage({
@@ -16,8 +17,10 @@ const storage = multer.memoryStorage({
 const fileFilter = (req, file, cb) => {
   const allowedType = /jpeg|jpg|png|gif/;
   const extname = allowedType.test(
-    Path2D.extname(file.originalname).toLowerCase()
+    //Path2D.extname(file.originalname).toLowerCase()
+    path.extname(file.originalname).toLowerCase() // Fixed: use `path.extname`
   );
+
   const mimetype = allowedType.test(file.mimetype);
 
   if (extname && mimetype) {
