@@ -92,6 +92,64 @@ export default function GalleryManagement() {
     }
   };
 
+  // Handle delete option
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${API_BASE_URL}/images/${id}`);
+
+      //after delete remove deleted image from state
+      setImages(images.filter((image) => image._id !== id));
+      alert("Image deleted successfully!");
+    } catch (err) {
+      console.error("Error deleting image:", err);
+      alert("Failed to delete image.");
+    }
+  };
+
+  // Handle edit option
+  const handleEdit = async (image) => {
+    // Populate the dialog with existing details
+    setTitle(image.title);
+    setDescription(image.description);
+    setFile(null); // Optionally
+
+    openDialog();
+
+    //handle form submission after editing
+    const handleEditSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const formData = new FormData();
+        formData.append("title", title.trim());
+        formData.append("description", description.trim());
+        if (file) formData.append("image", file);
+
+        // Send PUT request to backend
+        const res = await axios.put(
+          `${API_BASE_URL}/images/${image._id}`,
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+
+        // Update the image in state
+        setImages(
+          images.map((img) =>
+            img._id === image._id ? { ...img, ...res.data } : img
+          )
+        );
+
+        alert("Image updated successfully!");
+        closeDialog();
+      } catch (err) {
+        console.error("Error editing image:", err);
+        alert("Failed to edit image.");
+      }
+      return handleEditSubmit;
+    };
+  };
+
   // Conditional Rendering of Hooks
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -164,10 +222,10 @@ export default function GalleryManagement() {
                   <td className="G-table-data">{image.title || "N/A"}</td>
                   <td className="G-table-data">{image.description || "N/A"}</td>
                   <td className="G-table-data">
-                    <button>
+                    <button onClick={() => handleDelete(image._id)}>
                       <AutoDeleteIcon />
                     </button>
-                    <button>
+                    <button onClick={() => handleEdit(image)}>
                       <EditIcon />
                     </button>
                   </td>

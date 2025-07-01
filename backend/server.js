@@ -7,6 +7,7 @@ import connectDB from "./config/ConnectDB.js";
 //Routes files importing
 import UserRoutes from "./routes/user.routes.js";
 import imageRouter from "./routes/image.route.js";
+import AdminRoutes from "./routes/admin.routes.js";
 
 dotenv.config();
 const app = express();
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the uploads directory
-app.use('/uploads', express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,7 +28,8 @@ connectDB();
 app.use("/auth", UserRoutes);
 // image routes
 app.use("/images", imageRouter);
-
+// Admin routes
+app.use("/admin", AdminRoutes);
 
 app.listen(PORT, (err) => {
   console.log(`App is listening on ${PORT}`);

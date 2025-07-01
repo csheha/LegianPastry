@@ -8,12 +8,15 @@ import SchoolIcon from "@mui/icons-material/School";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import UserManagement from "../components/UserManagement";
 import GalleryManagement from "../components/GalleryManagement";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
   //to handle user,gallery and classes management
   const [isUser, setIsUser] = useState(true);
   const [isClass, setIsClass] = useState(false);
   const [isGallery, setIsGallery] = useState(false);
+
+  const navigate = useNavigate();
 
   const HandleIsUser = async () => {
     setIsUser(true);
@@ -30,6 +33,7 @@ export default function AdminDashboard() {
     setIsClass(false);
     setIsUser(false);
   };
+
   return (
     <>
       <div className="Admin-Dashboard">
@@ -45,7 +49,7 @@ export default function AdminDashboard() {
           </div>
           <div className="A-menu-middle">
             <div className="A-Nav-home">
-              <button className="A-nav-button">
+              <button className="A-nav-button" onClick={() => navigate("/")}>
                 <div className="A-Navcontent">
                   <div className="A-Navicon-home">
                     <div className="A-user-icon-circle">
