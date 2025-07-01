@@ -37,6 +37,14 @@ export default function App() {
         {/*Admin AdminDashboard*/}
 
         <Route
+          path="admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="admin/dashboard/user"
           element={
             <ProtectedRoute>
