@@ -9,18 +9,18 @@ export const uploadVideo = expressAsyncHandler(async (req, res) => {
             return res.status(500).json({ message: "No file found" });
         }
 
-        const title = req.body.title;
-        const description = req.body.description;
+        const food = req.body.food;
+        const chef = req.body.chef;
 
         // Validate title and description
-        if (!title || !description) {
-            return res.status(400).json({ message: "Title and description are required" });
+        if (!food || !chef) {
+            return res.status(400).json({ message: "Food and chef are required" });
         }
 
         // Create new video document
         const videoFile = new Video({
-            title: title,
-            description: description,
+            food: food,
+            chef: chef,
             filepath: req.file.path,
         });
 
@@ -72,17 +72,17 @@ export const getVideoById = expressAsyncHandler(async (req, res) => {
 export const editVideo = expressAsyncHandler(async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description } = req.body;
+        const { food, chef } = req.body;
 
         // Validate title and description
-        if (!title || !description) {
-            return res.status(400).json({ message: "Title and description are required" });
+        if (!food || !chef) {
+            return res.status(400).json({ message: "Food and chef are required" });
         }
 
         // Find the video by ID and update it
         const updatedVideo = await Video.findByIdAndUpdate(
             id,
-            { title, description },
+            { food, chef },
             { new: true }
         );
 
