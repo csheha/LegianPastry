@@ -16,7 +16,7 @@
 }
 
 .gallery .pics:hover {
-    filter: opacity(.8);
+    filter: blur(2px);
 }
 
 @media (max-width: 991px) {
