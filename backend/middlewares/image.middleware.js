@@ -1,3 +1,4 @@
+
 import multer from 'multer';
 import path from 'path';
 
@@ -15,9 +16,11 @@ const storage = multer.diskStorage({
 
 // Filter to allow only image files
 const fileFilter = (req, file, cb) => {
+
     const allowedType = /jpeg|jpg|png|gif/;
     const extname = allowedType.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedType.test(file.mimetype);
+
 
 
   if (extname && mimetype) {
