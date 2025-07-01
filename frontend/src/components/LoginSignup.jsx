@@ -76,7 +76,7 @@ export default function LoginSignup({ onClose }) {
 
   //admin button handle function
   const handleAdminClick = () => {
-    navigate("/admin");
+    navigate("/admin/login");
   };
 
   return (

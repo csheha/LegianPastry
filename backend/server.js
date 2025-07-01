@@ -7,6 +7,7 @@ import connectDB from "./config/ConnectDB.js";
 //Routes files importing
 import UserRoutes from "./routes/user.routes.js";
 import imageRoutes from "./routes/image.route.js";
+import AdminRoutes from "./routes/admin.routes.js";
 
 dotenv.config();
 const app = express();
@@ -23,7 +24,8 @@ connectDB();
 app.use("/auth", UserRoutes);
 // image routes
 app.use("/images", imageRoutes);
-
+// Admin routes
+app.use("/admin", AdminRoutes);
 
 app.listen(PORT, (err) => {
   console.log(`App is listening on ${PORT}`);

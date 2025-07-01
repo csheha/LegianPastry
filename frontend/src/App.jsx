@@ -11,6 +11,9 @@ import LoginSignup from "../src/components/LoginSignup"; // Importing the LoginS
 import Class from "../src/pages/Class";
 import AdminDashboard from "./pages/AdminDashboard";
 import GalleryManagement from "./components/GalleryManagement";
+import ProtectedRoute from "./components/ProtectedRoute";
+import UserManagement from "./components/UserManagement";
+import AdminLogin from "./pages/AdminLogin";
 
 export default function App() {
   // Initialize AOS
@@ -30,9 +33,25 @@ export default function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/class" element={<Class />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         {/*Admin AdminDashboard*/}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/gallery" element={<GalleryManagement />} />
+
+        <Route
+          path="admin/dashboard/user"
+          element={
+            <ProtectedRoute>
+              <UserManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="admin/dashboard/gallery"
+          element={
+            <ProtectedRoute>
+              <GalleryManagement />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
