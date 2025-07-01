@@ -14,6 +14,10 @@ const app = express();
 // Middelware
 app.use(express.json());
 app.use(cors());
+
+// Serve static files from the uploads directory
+app.use('/uploads', express.static('uploads'));
+
 const PORT = process.env.PORT || 3000;
 
 //Connect to the Database

@@ -1,68 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/FoodGallery.css';
 import CloseIcon from '@mui/icons-material/Close';
+import axios from 'axios';
+import SpinnerLoader from './SpinnerLoader';
 
-import Img01 from '../assets/img/Food01.jpg';
-import Img02 from '../assets/img/Food02.jpg';
-import Img03 from '../assets/img/Food03.jpg';
-import Img04 from '../assets/img/Food04.jpg';
-import Img05 from '../assets/img/Food05.jpg';
-import Img06 from '../assets/img/Food06.jpg';
-import Img07 from '../assets/img/Food07.jpg';
-import Img08 from '../assets/img/Food08.jpg';
-import Img09 from '../assets/img/Food09.jpg';
-import Img10 from '../assets/img/Food10.jpg';
 
 export default function FoodGallery() {
-
-    let data = [
-        {
-            id: 1,
-            imgSrc: Img01,
-        },
-        {
-            id: 2,
-            imgSrc: Img02,
-        },
-        {
-            id: 3,
-            imgSrc: Img03,
-        },
-        {
-            id: 4,
-            imgSrc: Img04,
-        },
-        {
-            id: 5,
-            imgSrc: Img05,
-        },
-        {
-            id: 6,
-            imgSrc: Img06,
-        },
-        {
-            id: 7,
-            imgSrc: Img07,
-        },
-        {
-            id: 8,
-            imgSrc: Img08,
-        },
-        {
-            id: 9,
-            imgSrc: Img09,
-        },
-        {
-            id: 10,
-            imgSrc: Img10,
-        },
-    ]
-
     const [model, setModel] = useState(false);
     const [tempImgSrc, setTempImgSrc] = useState('');
+    const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
-    const getImg = (imgSrc) => {
-        setTempImgSrc(imgSrc);
+    // Function to fetch the image
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const res = await axios.get('http://localhost:5000/images/');
+                if (Array.isArray(res.data)) {
+                    setImages(res.data);
+                } else {
+                    throw new Error('Invalid response format');
+                }
+            } catch (error) {
+                console.error('Error fetching images:', error);
+                setError('Failed to load images.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchImages();
+    }, []);
+
+    const getImg = (img) => {
+        // Normalize filepath by replacing backslashes with forward slashes
+        const cleanedPath = img.filepath.replace(/\\/g, '/');
+        setTempImgSrc('http://localhost:5000/' + cleanedPath);
         setModel(true);
     }
 
@@ -72,14 +46,27 @@ export default function FoodGallery() {
                 <img src={tempImgSrc} />
                 <CloseIcon onClick={() => setModel(false)} />
             </div>
+
+            {loading && 
+                <div className="loading">
+                    <SpinnerLoader />
+                </div>
+            }
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            
             <div className='gallery'>
-                {data.map((item, index) => {
+                {images.length > 0 && !loading && !error && (
+                    images.map((item, index) => {
                     return (
-                        <div className='pics' key={index} onClick={() => getImg(item.imgSrc)}>
-                            <img src={item.imgSrc} style={{width: '100%'}} />
+                        <div className='pics' key={index} onClick={() => getImg(item)}>
+                            <img 
+                                src={`http://localhost:5000/${item.filepath.replace(/\\/g, '/')}`}
+                                alt={item.title}
+                                style={{width: '100%'}}
+                            />
                         </div>
                     )
-                })}
+                }))}
             </div>
         </>
     )
