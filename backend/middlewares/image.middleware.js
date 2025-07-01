@@ -1,27 +1,27 @@
-import multer from "multer";
-import path from "path";
-import fs from "fs";
+
+import multer from 'multer';
+import path from 'path';
+
 
 // Configure storage: where and how to save uploaded files
-const storage = multer.memoryStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads"); // Folder to save uploaded images
-  },
-  filename: (req, file, cb) => {
-    // Save with timestamp + original filename to avoid conflicts
-    cb(null, Date.now() + "-" + file.originalname);
-  },
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Folder to save uploaded images
+    },
+    filename: (req, file, cb) => {
+        // Save with timestamp + original filename to avoid conflicts
+        cb(null, Date.now() + '-' + file.originalname);
+    }
 });
 
 // Filter to allow only image files
 const fileFilter = (req, file, cb) => {
-  const allowedType = /jpeg|jpg|png|gif/;
-  const extname = allowedType.test(
-    //Path2D.extname(file.originalname).toLowerCase()
-    path.extname(file.originalname).toLowerCase() // Fixed: use `path.extname`
-  );
 
-  const mimetype = allowedType.test(file.mimetype);
+    const allowedType = /jpeg|jpg|png|gif/;
+    const extname = allowedType.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedType.test(file.mimetype);
+
+
 
   if (extname && mimetype) {
     return cb(null, true); // Accept the file
