@@ -7,6 +7,7 @@ import CollectionsIcon from "@mui/icons-material/Collections";
 import SchoolIcon from "@mui/icons-material/School";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import UserManagement from "../components/UserManagement";
+import GalleryManagement from "../components/GalleryManagement";
 
 export default function AdminDashboard() {
   //to handle user,gallery and classes management
@@ -191,7 +192,9 @@ export default function AdminDashboard() {
               <div className="top-bar-head">
                 <span className="top-bar-head-text">Gallery Management</span>
               </div>
-              <div className="top-bar-mainsection">gallery table</div>
+              <div className="top-bar-mainsection">
+                <GalleryManagement />
+              </div>
             </>
           )}
         </div>
