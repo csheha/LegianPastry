@@ -19,17 +19,18 @@ const fileFilter = (req, file, cb) => {
     const extname = allowedType.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedType.test(file.mimetype);
 
-    if (extname && mimetype) {
-        return cb(null, true); // Accept the file
-    } else {
-        cb(new Error('Only images are allowed!'), false); // Reject the file
-    }
+
+  if (extname && mimetype) {
+    return cb(null, true); // Accept the file
+  } else {
+    cb(new Error("Only images are allowed!"), false); // Reject the file
+  }
 };
 
-const upload = multer({ 
-    storage: storage,
-    fileFilter: fileFilter,
-    limits: { fileSize: 1024 * 1024 * 20 } // Limit file size to 20MB
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: { fileSize: 1024 * 1024 * 20 }, // Limit file size to 20MB
 });
 
 export { upload };

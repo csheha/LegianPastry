@@ -169,10 +169,10 @@ export const getUser = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     //check user exist
-    const getUsers = await User.find();
+    const users = await User.find();
 
     //find and fetch users
-    if (!getUsers) {
+    if (!users) {
       return res.status(400).send("Users do not exist");
     }
 
@@ -180,7 +180,7 @@ export const getUsers = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "Users details fetch successfully",
-      data: getUsers,
+      data: users,
     });
   } catch (err) {
     console.error("Error fetching user:", err);
