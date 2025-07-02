@@ -39,6 +39,7 @@ export default function Hero() {
               src="https://cdn.lottielab.com/l/6aXQv8UtTAUvu7.json"
               background="transparent"
               speed="0.2"
+              loop
               autoplay
             ></lottie-player>
           </div>
