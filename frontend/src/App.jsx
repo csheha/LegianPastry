@@ -14,6 +14,7 @@ import GalleryManagement from "./components/GalleryManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserManagement from "./components/UserManagement";
 import AdminLogin from "./pages/AdminLogin";
+import ClassManagement from "./components/ClassManagement";
 
 export default function App() {
   // Initialize AOS
@@ -57,6 +58,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <GalleryManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="admin/dashboard/classes"
+          element={
+            <ProtectedRoute>
+              <ClassManagement />
             </ProtectedRoute>
           }
         />

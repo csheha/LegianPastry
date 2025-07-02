@@ -1,0 +1,217 @@
+.ClassManagement {
+  padding: 20px;
+  width: 100%;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Add Image Section */
+.Add-Video {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.Add-video-button {
+  background-color: #6a460c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Add-video-button:hover {
+  background-color: #cbb18b;
+}
+
+/* Dialog Box */
+dialog {
+  border: none;
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  width: 90vw;
+}
+
+dialog::backdrop {
+  background: rgba(56, 48, 48, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.form-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f2f5;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.label {
+  display: flex;
+  width: 100%;
+  padding: 1.5px;
+  margin: 1px 0;
+
+  align-items: flex-start;
+}
+
+.input-element {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #6a460c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #cbb18b;
+}
+
+button[type="button"] {
+  background: #c6352d;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  margin-left: auto;
+}
+
+button[type="button"]:hover {
+  background-color: #c82333;
+}
+
+/* Table Styles */
+.ClassTable {
+  padding: 0px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Handle horizontal scroll on small screens */
+  width: 100%;
+}
+
+.ClassTable thead {
+  background-color: #f1f1f1;
+}
+
+.ClassTable th {
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+.ClassTable td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.C-table-data button {
+  backcround: none;
+  border: none;
+  cursor: pointer;
+  color: #d5b252;
+  font-size: 16px;
+}
+
+.C-table-data button:hover {
+  color: #cbb18b;
+}
+/* Delete button */
+.C-table-data button:first-child {
+  background-color: #ffffffc6;
+  color: rgb(217, 21, 21);
+}
+
+.C-table-data button:first-child:hover {
+  background-color: #e0ac75;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(255, 179, 25, 0.3);
+}
+/* Edit button */
+.C-table-data button:last-child {
+  background-color: #ffffff;
+  color: rgb(15, 13, 13);
+}
+
+.C-table-data button:last-child:hover {
+  background-color: #e0ac75;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(255, 179, 25, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ClassManagement {
+    padding: 15px;
+  }
+
+  .Add-video-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  dialog {
+    padding: 15px;
+  }
+
+  button[type="submit"],
+  button[type="button"] {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .ClassTable th,
+  .ClassTable td {
+    padding: 8px;
+  }
+}

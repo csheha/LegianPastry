@@ -9,6 +9,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import UserManagement from "../components/UserManagement";
 import GalleryManagement from "../components/GalleryManagement";
 import { useNavigate } from "react-router-dom";
+import ClassManagement from "../components/ClassManagement";
 
 export default function AdminDashboard() {
   //to handle user,gallery and classes management
@@ -187,7 +188,9 @@ export default function AdminDashboard() {
               <div className="top-bar-head">
                 <span className="top-bar-head-text">Class Management</span>
               </div>
-              <div className="top-bar-mainsection">class table</div>
+              <div className="top-bar-mainsection">
+                <ClassManagement />
+              </div>
             </>
           )}
           {/*Gallery Management*/}
