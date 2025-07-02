@@ -4,6 +4,7 @@ import "../styles/Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Model from "../components/Model.jsx";
 import LoginSignup from "./LoginSignup.jsx";
+import axios from "axios";
 
 const navItems = [
   { name: "About", href: "#about" },
@@ -14,6 +15,13 @@ const navItems = [
 
 export default function Navbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  //state to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // callback function to recieve login results
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
 
   const openLoginModal = () => {
     console.log("Login modal opened");
@@ -38,6 +46,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  //Handle Logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    alert("Logged out successfully.");
+  };
   return (
     <>
       <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
@@ -73,10 +87,14 @@ export default function Navbar() {
                 href="#login"
                 onClick={() => {
                   setMenuOpen(false);
-                  openLoginModal();
+                  if (isLoggedIn) {
+                    handleLogout(); // You'll need to define this function
+                  } else {
+                    openLoginModal();
+                  }
                 }}
               >
-                Login
+                {isLoggedIn ? "Logout" : "Login"}
               </a>
             </div>
           </div>
@@ -90,7 +108,10 @@ export default function Navbar() {
       </nav>
       {isLoginModalOpen && (
         <Model>
-          <LoginSignup onClose={closeLoginModal} />
+          <LoginSignup
+            onClose={closeLoginModal}
+            onLoginSuccess={handleLoginSuccess}
+          />
         </Model>
       )}
     </>

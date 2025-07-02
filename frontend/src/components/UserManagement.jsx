@@ -33,6 +33,20 @@ export default function UserManagement() {
     fetchUser();
   }, []);
 
+  // Handle delete option
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${API_BASE_URL}/auth/delete/${id}`);
+
+      //after delete remove deleted image from state
+      setUsers(users.filter((user) => user._id !== id));
+      alert("User deleted successfully!");
+    } catch (err) {
+      console.error("Error deleting user:", err);
+      alert("Failed to delete user.");
+    }
+  };
+
   //Handling loading and error
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -89,11 +103,8 @@ export default function UserManagement() {
                   <td className="U-table-data">{user.contactNumber}</td>
                   <td className="U-table-data">{user.address}</td>
                   <td className="U-table-data">
-                    <button>
+                    <button onClick={() => handleDelete(user._id)}>
                       <AutoDeleteIcon />
-                    </button>
-                    <button>
-                      <EditIcon />
                     </button>
                   </td>
                 </tr>
