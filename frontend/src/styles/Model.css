@@ -4,7 +4,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: transparent; /* semi-transparent background */
+  background: rgba(0, 0, 0, 0.3); /* dark transparent overlay */
+  backdrop-filter: blur(8px); /* ⬅️ this creates the blur effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
   display: flex;
   align-items: center;
   justify-content: center;

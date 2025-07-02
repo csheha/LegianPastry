@@ -10,7 +10,7 @@ import { jwtDecode } from "jwt-decode";
 
 const API_BASE_URL = "http://localhost:5000";
 
-export default function LoginSignup({ onClose }) {
+export default function LoginSignup({ onClose, onLoginSuccess }) {
   //inside login box navbar switch between login and signup
   const [activeTab, setActiveTab] = useState("login"); // Default to login tab
 
@@ -43,6 +43,10 @@ export default function LoginSignup({ onClose }) {
       //navigate to home
       navigate("/");
       console.log(`Login successful! Token: ${res.data.token} `);
+
+      if (onLoginSuccess) {
+        onLoginSuccess(); // This updates isLoggedIn in Navbar
+      }
     } catch (err) {
       setMessage(
         err.response?.data?.message || "Login failed. Check your credentials."
@@ -72,6 +76,34 @@ export default function LoginSignup({ onClose }) {
         err.response?.data?.message || "Signup failed. Please try again."
       );
     }
+  };
+  // Google Login Success Handler
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      console.log(credentialResponse);
+      const decodedToken = jwtDecode(credentialResponse.credential);
+      console.log(decodedToken);
+
+      setMessage("Google login successful!");
+
+      // Close the modal
+      if (onClose) {
+        onClose();
+      }
+      if (onLoginSuccess) {
+        onLoginSuccess(); // This updates isLoggedIn in Navbar
+      }
+      // Navigate to home page
+      navigate("/");
+    } catch (error) {
+      console.error("Google login error:", error);
+      setMessage("Google login failed. Please try again.");
+    }
+  };
+  // Google Login Error Handler
+  const handleGoogleError = () => {
+    console.log("Google Login Failed");
+    setMessage("Google login failed. Please try again.");
   };
 
   //admin button handle function
@@ -158,47 +190,14 @@ export default function LoginSignup({ onClose }) {
                       <button className="liquidglass-button">Login</button>
                     </div>
                     <div className="lpf-button">
-                      <div className="lpf-google-icon">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M21 11.79C21 15.94 18.79 21 12.13 21C7.12461 21.0332 3.03852 17.0053 3 12C3.03852 6.99461 7.12461 2.9667 12.13 2.99996C14.2007 3.00764 16.2085 3.71213 17.83 4.99996C17.942 5.09149 18.0109 5.22557 18.02 5.36996C18.0206 5.51605 17.963 5.65637 17.86 5.75996C17.209 6.35516 16.5882 6.98261 16 7.63996C15.8289 7.82826 15.5422 7.85432 15.34 7.69996C14.4161 7.01624 13.2888 6.66394 12.14 6.69996C9.18528 6.69996 6.79 9.09524 6.79 12.05C6.79 15.0047 9.18528 17.4 12.14 17.4C15.14 17.4 16.41 16.12 17.07 13.85H12.5C12.2239 13.85 12 13.6261 12 13.35V10.7C12 10.4238 12.2239 10.2 12.5 10.2H20.5C20.7302 10.1985 20.9244 10.3711 20.95 10.6C20.9871 10.9955 21.0038 11.3927 21 11.79Z"
-                            fill="black"
-                          />
-                        </svg>
-                      </div>
-                      <button className="lpf-button-google">
-                        <GoogleLogin
-                          onSuccess={(credentialResponse) => {
-                            console.log(credentialResponse);
-                            console.log(
-                              jwtDecode(credentialResponse.credential)
-                            );
-                            navigate("/"); // Redirect to home page after successful login
-                          }}
-                          onError={() => {
-                            console.log("Google Login Failed");
-                          }}
-                          render={(renderProps) => (
-                            <button
-                              onClick={renderProps.onClick}
-                              disabled={renderProps.disabled}
-                            >
-                              <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-                                alt="Google logo"
-                                className="lpf-login-google"
-                              />
-                              Login with Google
-                            </button>
-                          )}
-                        />
-                      </button>
+                      {/* Fixed Google Login - removed nested button structure */}
+                      <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={handleGoogleError}
+                        text="signin_with"
+                        theme="outline"
+                        size="large"
+                      />
                     </div>
                   </div>
                 </form>

@@ -4,12 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Parallax, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import testimonalsbg from "../assets/testimonalsbg.jpg";
+import testimonalsbg from "../assets/Testimonialb.jpg";
 import person1 from "../assets/person1.jpg";
 import person2 from "../assets/person2.jpg";
 import person3 from "../assets/person3.jpg";
 import person4 from "../assets/person4.jpg";
-import person5 from "../assets/person5.jpg";
 import framelogo from "../assets/Frame.png";
 
 const SlideData = [
@@ -71,7 +70,9 @@ export default function Testimonals() {
             slot="container-start"
             className="parallax-bg"
             style={{
-              "background-image": `url(${testimonalsbg})`,
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${testimonalsbg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
             data-swiper-parallax="-23%"
           ></div>
