@@ -83,7 +83,7 @@ export default function ClassManagement() {
       closeDialog();
 
       // Refresh videos list
-      const res = await axios.get(`${API_BASE_URL}/vidoes`);
+      const res = await axios.get(`${API_BASE_URL}/videos`);
       setVideos(res.data);
     } catch (err) {
       console.error("Error uploading video:", err); // For debugging
