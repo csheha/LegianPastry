@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import SpinnerLoader from './SpinnerLoader';
 
+const API_BASE_URL = "http://localhost:5000";
 
 export default function FoodGallery() {
     const [model, setModel] = useState(false);
@@ -16,7 +17,7 @@ export default function FoodGallery() {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/images/');
+                const res = await axios.get(`${API_BASE_URL}/images/`);
                 if (Array.isArray(res.data)) {
                     setImages(res.data);
                 } else {
@@ -36,7 +37,7 @@ export default function FoodGallery() {
     const getImg = (img) => {
         // Normalize filepath by replacing backslashes with forward slashes
         const cleanedPath = img.filepath.replace(/\\/g, '/');
-        setTempImgSrc('http://localhost:5000/' + cleanedPath);
+        setTempImgSrc(`${API_BASE_URL}/` + cleanedPath);
         setModel(true);
     }
 
@@ -60,7 +61,7 @@ export default function FoodGallery() {
                     return (
                         <div className='pics' key={index} onClick={() => getImg(item)}>
                             <img 
-                                src={`http://localhost:5000/${item.filepath.replace(/\\/g, '/')}`}
+                                src={`${API_BASE_URL}/${item.filepath.replace(/\\/g, '/')}`}
                                 alt={item.title}
                                 style={{width: '100%'}}
                             />
