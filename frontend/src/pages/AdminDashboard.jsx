@@ -67,11 +67,8 @@ export default function AdminDashboard() {
             <div className="A-Nav-user">
               <button className="A-nav-button" onClick={HandleIsUser}>
                 <div className="A-usermanagement">
-                  <div className="A-user-icon-circle">
-                    <div className="A-user-icon">
-                      <AccountCircleIcon />
-                    </div>
-                  </div>
+                  <AccountCircleIcon />
+
                   <span className="A-usermanagement-text">User Management</span>
                 </div>
               </button>
@@ -79,11 +76,7 @@ export default function AdminDashboard() {
             <div className="A-Nav-classes">
               <button className="A-nav-button" onClick={HandleIsClass}>
                 <div className="A-classesmanagement">
-                  <div className="A-class-icon-circle">
-                    <div className="A-class-icon">
-                      <SchoolIcon />
-                    </div>
-                  </div>
+                  <SchoolIcon />
 
                   <span className="A-classesmanagement-text">
                     Classes Management
@@ -94,11 +87,7 @@ export default function AdminDashboard() {
             <div className="A-Nav-gallery">
               <button className="A-nav-button" onClick={HandleIsGallery}>
                 <div className="A-gallerymanagement">
-                  <div className="A-gallery-icon-circle">
-                    <div className="A-gallery-icon">
-                      <CollectionsIcon />
-                    </div>
-                  </div>
+                  <CollectionsIcon />
 
                   <span className="A-gallerymanagement-text">
                     Gallery Management

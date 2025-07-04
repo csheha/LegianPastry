@@ -1,6 +1,5 @@
 .developmentSection {
   display: flex;
-
   padding: 112px 64px;
   flex-direction: column;
   align-items: flex-start;
@@ -91,6 +90,8 @@
   align-self: stretch;
   padding-top: 40px;
 }
+
+/* Improved member card with glowing hover */
 .member-card {
   display: flex;
   flex-direction: column;
@@ -101,12 +102,38 @@
   background: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .member-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(255, 179, 25, 0.35),
+    0 0 30px rgba(255, 179, 25, 0.2);
+  filter: brightness(1.05);
+  z-index: 10;
+}
+
+.member-card::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 18px;
+  background: linear-gradient(45deg, #e9bd66, #ebb653, #ffc94d, #f0ce89);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.member-card:hover::before {
+  opacity: 1;
 }
 
 .member-img {
@@ -148,13 +175,14 @@
   justify-content: center;
   background: #f9f9f9;
   border-radius: 50%;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
 
 .team-member-social-icons div:hover {
   background-color: #ffb319;
-  transform: scale(1.1);
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: 0 4px 8px rgba(255, 179, 25, 0.5);
 }
 
 .team-member-social-icons svg {
@@ -166,6 +194,7 @@
 .team-member-social-icons div:hover svg {
   fill: #ffffff;
 }
+
 /* Medium screens (tablets) - 768px to 1023px */
 @media (max-width: 1023px) {
   .developmentSection {
