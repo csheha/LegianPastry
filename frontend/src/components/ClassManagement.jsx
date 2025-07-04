@@ -115,6 +115,7 @@ export default function ClassManagement() {
     //handle form submission after editing
     const handleEditSubmit = async (e) => {
       e.preventDefault();
+
       try {
         const formData = new FormData();
         formData.append("food", food.trim());
