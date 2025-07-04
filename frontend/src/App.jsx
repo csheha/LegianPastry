@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserManagement from "./components/UserManagement";
 import AdminLogin from "./pages/AdminLogin";
 import ClassManagement from "./components/ClassManagement";
+import NewHero from "./components/NewHero";
 
 export default function App() {
   // Initialize AOS
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/class" element={<Class />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/new" element={<NewHero />} />
         {/*Admin AdminDashboard*/}
 
         <Route
