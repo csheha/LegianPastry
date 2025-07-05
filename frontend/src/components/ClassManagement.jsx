@@ -20,6 +20,9 @@ export default function ClassManagement() {
   const [videos, setVideos] = useState([]);
   // add button
   const [isAddButton, setIsAddButton] = useState(false);
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6; // Items per page
 
   // fetch videos on mount
   useEffect(() => {
@@ -152,6 +155,33 @@ export default function ClassManagement() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  // Pagination logic
+  const totalPages = Math.ceil(videos.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentVideos = videos.slice(startIndex, startIndex + pageSize);
+
+  // Pagination handlers
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Generate page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
   return (
     <>
       <div className="ClassManagement">
@@ -215,8 +245,8 @@ export default function ClassManagement() {
               </tr>
             </thead>
             <tbody>
-              {videos.length > 0 ? (
-                videos.map((video) => (
+              {Array.isArray(currentVideos) &&
+                currentVideos.map((video) => (
                   <tr key={video._id}>
                     <td className="G-table-data">{video.food || "N/A"}</td>
                     <td className="G-table-data">{video.chef || "N/A"}</td>
@@ -229,14 +259,43 @@ export default function ClassManagement() {
                       </button>
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="3">No Videos found.</td>
-                </tr>
-              )}
+                ))}
             </tbody>
           </table>
+          {/* Pagination Controls */}
+          <div className="pagination-container">
+            <button
+              className={`pagination-btn ${
+                currentPage === 1 ? "disabled" : ""
+              }`}
+              onClick={previousPage}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+
+            {pageNumbers.map((pageNumber) => (
+              <button
+                key={pageNumber}
+                className={`pagination-btn ${
+                  currentPage === pageNumber ? "active" : ""
+                }`}
+                onClick={() => goToPage(pageNumber)}
+              >
+                {pageNumber}
+              </button>
+            ))}
+
+            <button
+              className={`pagination-btn ${
+                currentPage === totalPages ? "disabled" : ""
+              }`}
+              onClick={nextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </>
