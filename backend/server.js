@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://legian-pastry-xju5.vercel.app"],
+    origin: ["http://localhost:3000", "https://legian-pastry-8atz.vercel.app/"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
