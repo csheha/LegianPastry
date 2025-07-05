@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import DevelopersSection from "../components/DevelopersSection";
 import Gallery from "../components/Gallery";
 import Class from "../components/Class";
+import Contact from "../components/Contact";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           <Gallery />
           <Testimonals />
           <Class />
+          <Contact />
           <DevelopersSection />
           <Footer />
         </main>
