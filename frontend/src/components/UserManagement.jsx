@@ -3,11 +3,8 @@ import axios from "axios";
 import "../styles/UserManagement.css";
 import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
 import EditIcon from "@mui/icons-material/Edit";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
+const API_BASE_URL = `http://legianpastry-production.up.railway.app`;
 
 export default function UserManagement() {
   // managing states
