@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use, useRef, useEffect } from 'react'
 import '../styles/Gallery.css';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
@@ -13,13 +13,44 @@ import { useNavigate } from 'react-router-dom';
 export default function Gallery() {
     
   const navigate = useNavigate();
+  const galleryRef = useRef(null);
 
   const handleClick = () => {
     navigate('/gallery');
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if(entry.isIntersecting) {
+            // Add the animation class when the element comes into view
+            entry.target.classList.add('animate');
+          } else {
+            // Remove the animation class when the element goes out of view
+            entry.target.classList.remove('animate');
+          }
+        });
+      },
+      {
+          threshold: 0.1, // Trigger when 10% of the element is visible
+          rootMargin : '0px'
+      }
+    );
+
+    if(galleryRef.current) {
+      observer.observe(galleryRef.current);
+    }
+
+    return () => {
+      if(galleryRef.current) {
+        observer.unobserve(galleryRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div id='gallery' className="gallery-section">
+    <div id='gallery' className="gallery-section" ref={galleryRef}>
 
       <div className="gallery-container">
         <div className="gallery-title">
