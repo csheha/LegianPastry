@@ -30,7 +30,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="${process.env.REACT_APP_API_URL}/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<LoginSignup />} />
