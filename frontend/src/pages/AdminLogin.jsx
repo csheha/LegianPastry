@@ -4,6 +4,8 @@ import axios from "axios";
 import "../styles/AdminLogin.css";
 import Logo from "../assets/Frame.png";
 
+const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
+
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +16,7 @@ export default function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/admin/login", {
+      const res = await axios.post(`${API_BASE_URL}/admin/login`, {
         username,
         password,
       });
