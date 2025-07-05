@@ -20,6 +20,9 @@ export default function GalleryManagement() {
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const [images, setImages] = useState([]);
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6; // Items per page
 
   // 1. Fetch images on mount
   useEffect(() => {
@@ -154,6 +157,34 @@ export default function GalleryManagement() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  // Pagination logic
+  const totalPages = Math.ceil(images.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentImages = images.slice(startIndex, startIndex + pageSize);
+
+  // Pagination handlers
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Generate page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="GalleryManagement">
       {/* Add Images to the Gallery*/}
@@ -216,8 +247,8 @@ export default function GalleryManagement() {
             </tr>
           </thead>
           <tbody>
-            {images.length > 0 ? (
-              images.map((image) => (
+            {Array.isArray(currentImages) &&
+              currentImages.map((image) => (
                 <tr key={image._id}>
                   <td className="G-table-data">{image.title || "N/A"}</td>
                   <td className="G-table-data">{image.description || "N/A"}</td>
@@ -230,14 +261,48 @@ export default function GalleryManagement() {
                     </button>
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3">No images found.</td>
-              </tr>
-            )}
+              ))}
           </tbody>
         </table>
+        {/* Pagination Info */}
+        <div className="pagination-info">
+          Showing {startIndex + 1} to{" "}
+          {Math.min(startIndex + pageSize, images.length)} of {images.length}{" "}
+          images
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="pagination-container">
+          <button
+            className={`pagination-btn ${currentPage === 1 ? "disabled" : ""}`}
+            onClick={previousPage}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+
+          {pageNumbers.map((pageNumber) => (
+            <button
+              key={pageNumber}
+              className={`pagination-btn ${
+                currentPage === pageNumber ? "active" : ""
+              }`}
+              onClick={() => goToPage(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          ))}
+
+          <button
+            className={`pagination-btn ${
+              currentPage === totalPages ? "disabled" : ""
+            }`}
+            onClick={nextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

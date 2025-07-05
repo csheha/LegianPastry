@@ -3,6 +3,7 @@
 /* Container for the entire table */
 .UserTable-Container {
   padding: 0px;
+  width: 100%;
   margin: 20px auto;
   background: #fff;
   border-radius: 10px;
