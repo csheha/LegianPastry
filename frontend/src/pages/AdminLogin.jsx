@@ -3,11 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/AdminLogin.css";
 import Logo from "../assets/Frame.png";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
+const API_BASE_URL = `http://legianpastry-production.up.railway.app`;
 
 export default function AdminLogin() {
   console.log("admin login");
