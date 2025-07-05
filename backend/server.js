@@ -40,6 +40,11 @@ app.use("/admin", AdminRoutes);
 // Video routes
 app.use("/videos", videoRouter);
 
+app.get("/", (req, res) => {
+  console.log("Test route was hit");
+  res.send("Working!");
+});
+
 app.listen(PORT, (err) => {
   console.log(`App is listening on ${PORT}`);
 });
