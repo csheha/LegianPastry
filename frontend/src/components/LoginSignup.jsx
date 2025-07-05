@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
-const API_BASE_URL = `https://legianpastry-production.up.railway.app`;
+const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
 
 export default function LoginSignup({ onClose, onLoginSuccess }) {
   //inside login box navbar switch between login and signup
