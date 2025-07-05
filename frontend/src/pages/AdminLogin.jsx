@@ -10,6 +10,7 @@ dotenv.config();
 const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
 
 export default function AdminLogin() {
+  console.log("admin login");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
