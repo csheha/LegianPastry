@@ -15,7 +15,13 @@ const app = express();
 
 // Middelware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://legian-pastry-xju5.vercel.app"],
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 // Serve static files from the uploads directory
 app.use("/uploads", express.static("uploads"));
