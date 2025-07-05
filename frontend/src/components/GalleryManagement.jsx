@@ -5,7 +5,7 @@ import axios from "axios";
 import "../styles/GalleryManagement.css";
 import CloseIcon from "@mui/icons-material/Close";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
 
 export default function GalleryManagement() {
   // loading and error
