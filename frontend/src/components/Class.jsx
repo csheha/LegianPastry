@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../styles/Class.css';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import video01 from '../assets/videos/Food01.mp4';
 import video02 from '../assets/videos/Food02.mp4';
@@ -37,6 +39,13 @@ const videos = [
 export default function Class() {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: false,
+        });
+    }, []);
+
     const handleClick = () => {
         navigate('/class');
     }
@@ -44,8 +53,16 @@ export default function Class() {
   return (
     <div id='class' className='class-section'>
       <div className="class-container">
-        <h1 className='class-text'>Classes</h1>
-        <div className="class-header">
+        <h1 
+            className='class-text'
+            data-aos="fade-down"
+        >
+            Classes
+        </h1>
+        <div 
+            className="class-header"
+            data-aos="fade-up"
+        >
             <div className="header-text">
                 <h1>Explore amazing classes from our chefs around the world!</h1>
             </div>
@@ -56,9 +73,16 @@ export default function Class() {
             </div>  
         </div>
         <div className="class-content">
-            <div className="video-wrapper">
-                {videos.map((video) => ( 
-                    <div key={video.id} className="video-card"> 
+            <div 
+                className="video-wrapper"
+            >
+                {videos.map((video, index) => ( 
+                    <div 
+                        key={video.id} 
+                        className="video-card"
+                        data-aos="zoom-in"
+                        data-aos-delay={index * 200} // Stagger animations
+                    > 
                         <video
                         src={video.videoUrl}
                         controls
