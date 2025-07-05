@@ -4,7 +4,7 @@ import axios from "axios";
 import "../styles/AdminLogin.css";
 import Logo from "../assets/Frame.png";
 
-const API_BASE_URL = `http://legianpastry-production.up.railway.app`;
+const API_BASE_URL = `https://legianpastry-production.up.railway.app`;
 
 export default function AdminLogin() {
   console.log("admin login");
