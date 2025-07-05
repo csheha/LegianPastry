@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://legian-pastry-8atz.vercel.app/"],
+    origin: ["http://localhost:3000", "https://legian-pastry-8atz.vercel.app"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -39,11 +39,6 @@ app.use("/images", imageRouter);
 app.use("/admin", AdminRoutes);
 // Video routes
 app.use("/videos", videoRouter);
-
-app.get("/", (req, res) => {
-  console.log("Test route was hit");
-  res.send("Working!");
-});
 
 app.listen(PORT, (err) => {
   console.log(`App is listening on ${PORT}`);
