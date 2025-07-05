@@ -4,7 +4,7 @@ import "../styles/UserManagement.css";
 import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
 import EditIcon from "@mui/icons-material/Edit";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
 
 export default function UserManagement() {
   // managing states
@@ -14,7 +14,7 @@ export default function UserManagement() {
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10; // Items per page
+  const pageSize = 6; // Items per page
 
   //Handling fetch Data
   useEffect(() => {
