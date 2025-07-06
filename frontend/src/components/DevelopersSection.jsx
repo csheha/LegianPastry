@@ -6,7 +6,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { useNavigate } from "react-router-dom";
 import member01 from "../assets/members/member01.jpg";
-import member02 from "../assets/members/member02.jpg";
+import member02 from "../assets/members/member02.png";
 
 export default function DevelopersSection() {
   const navigate = useNavigate();
