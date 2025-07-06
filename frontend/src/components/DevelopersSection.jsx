@@ -5,6 +5,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { useNavigate } from "react-router-dom";
+import member01 from "../assets/members/member01.jpg";
+import member02 from "../assets/members/member02.jpg";
 
 export default function DevelopersSection() {
   const navigate = useNavigate();
@@ -31,7 +33,9 @@ export default function DevelopersSection() {
           <div className="development-team-box">
             <div className="development-team">
               <div className="member-card" data-aos="fade-up">
-                <div className="member-img"></div>
+                <div>
+                  <img className="member-img" src={member01} alt="img" />
+                </div>
                 <div className="membercontent">
                   <div className="member-about">
                     <div className="member-name">Thakshila Prasadanee</div>
@@ -73,7 +77,9 @@ export default function DevelopersSection() {
               </div>
               {/* next */}
               <div data-aos="fade-up" className="member-card">
-                <div className="member-img"></div>
+                <div>
+                  <img className="member-img" src={member02} alt="img" />
+                </div>
                 <div className="membercontent">
                   <div className="member-about">
                     <div className="member-name">Chanudi Shehani</div>

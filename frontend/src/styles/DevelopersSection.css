@@ -83,12 +83,12 @@
   align-self: stretch;
 }
 .development-team {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 84px;
-  align-self: stretch;
-  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  padding: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Improved member card with glowing hover */
@@ -97,53 +97,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
   padding: 40px;
   background: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease,
+    border 0.4s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  border: 2px solid transparent; /* Default no border */
 }
 
 .member-card:hover {
-  transform: translateY(-15px) scale(1.05);
-  box-shadow: 0 12px 24px rgba(255, 179, 25, 0.35),
-    0 0 30px rgba(255, 179, 25, 0.2);
-  filter: brightness(1.05);
-  z-index: 10;
-}
-
-.member-card::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  border-radius: 18px;
-  background: linear-gradient(45deg, #e9bd66, #ebb653, #ffc94d, #f0ce89);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.member-card:hover::before {
-  opacity: 1;
+  border: 2px solid #ffb319; /* Yellow border on hover */
+  box-shadow: 0 8px 16px rgba(255, 179, 25, 0.4); /* Optional yellow glow */
+  transform: scale(1.03); /* Slight zoom */
 }
 
 .member-img {
-  width: 80px;
-  height: 80px;
+  width: 130px;
+  height: 130px;
   background: #e0e0e0;
   border-radius: 50%;
   margin-bottom: 15px;
 }
-
+.member-img:hover {
+  transform: scale(1.1);
+}
 .membercontent {
   text-align: center;
 }
