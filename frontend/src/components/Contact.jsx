@@ -2,8 +2,6 @@ import React, { useRef } from 'react'
 import '../styles/Contact.css';
 import emailjs from '@emailjs/browser';
 
-import contact from '../assets/img/contactus.jpg';
-
 export default function Contact() {
     const form = useRef();
 
@@ -32,13 +30,17 @@ export default function Contact() {
 
   return (
     <div id='contact' className='contact'>
-      <div className="contact-image">
-        <img src={contact} alt='contact us' />
+      <div className="contact-content">
+        <h1>Contact Us ...</h1>
+        <span>
+            Need to get in touch with us? Either fill out the 
+            form with your inquiry or find the department email you'd 
+            like to contact below.
+        </span>
       </div>
 
       <div className='contact-form'>
         <form ref={form} className="form" onSubmit={sendEmail}>
-            <h1>Contact Us</h1>
             <div className="contact-field">
                 <div className="form-group">
                     <input
