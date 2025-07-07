@@ -3,9 +3,9 @@ import FoodGallery from '../components/FoodGallery'; // Importing the Gallery co
 
 export default function Gallery() {
   return (
-    <div style={{ padding: '20px', backgroundColor: 'rgba(255, 255, 255, 1)' }}>
-      <h1 style={{textAlign: 'center', color: '#023e8a'}}>Food Gallery</h1>
-      <h2 style={{textAlign: 'center', color: '#0077b6'}}>Explore amazing foods</h2>
+    <div style={{ padding: '40px 10px 10px 10px', backgroundColor: 'rgba(255, 255, 255, 1)' }}>
+      <h1 style={{textAlign: 'center', color: '#023e8a', marginBottom: '10px'}}>Food Gallery</h1>
+      <h2 style={{textAlign: 'center', color: '#0077b6', marginBottom: '20px'}}>Explore amazing foods</h2>
       <FoodGallery />
     </div>
   )
