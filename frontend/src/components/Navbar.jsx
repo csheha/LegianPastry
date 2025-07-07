@@ -4,23 +4,19 @@ import "../styles/Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Model from "../components/Model.jsx";
 import LoginSignup from "./LoginSignup.jsx";
-import { Link } from 'react-scroll';
 
 
 const navItems = [
-  { name: "About", to: "about" },
-  { name: "Classes", to: "class" },
-  { name: "Contact", to: "contact" },
-  { name: "Gallery", to: "gallery" },
+  { name: "About", href: "#about" },
+  { name: "Classes", href: "#class" },
+  { name: "Contact", href: "#contact" },
+  { name: "Gallery", href: "#gallery" },
 ];
 
 export default function Navbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   //state to track login status
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   // callback function to recieve login results
   const handleLoginSuccess = () => {
@@ -35,6 +31,9 @@ export default function Navbar() {
     console.log("Login modal closed");
     setIsLoginModalOpen(false);
   };
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
@@ -58,17 +57,10 @@ export default function Navbar() {
       <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
         <div className="navbar-container">
           <div className="navbar-logo">
-            <Link
-              className="link-logo"
-              to="hero"
-              smooth={true}
-              duration={500}
-              offset={-70}
-              onClick={() => setMenuOpen(false)}
-            >
+            <a href="#hero">
               <img src={burgerIcon} alt="Burger Icon" />
               <span>LegianPastry</span>
-            </Link>
+            </a>
           </div>
 
           <div className={`navbar-content ${menuOpen ? "responsive_nav" : ""}`}>
@@ -80,25 +72,20 @@ export default function Navbar() {
 
             <div className="navbar-links">
               {navItems.map((item, key) => (
-                <Link
-                  className="link"
+                <a
                   key={key}
-                  to={item.to}
-                  smooth={true}
-                  duration={500}
-                  offset={-70}
+                  href={item.href}
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
 
             <div className="navbar-login">
               <a
                 href="#login"
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={() => {
                   setMenuOpen(false);
                   if (isLoggedIn) {
                     handleLogout(); // You'll need to define this function
