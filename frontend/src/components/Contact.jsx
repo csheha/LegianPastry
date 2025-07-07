@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import "../styles/Contact.css";
-import emailjs from "@emailjs/browser";
+import React, { useRef } from 'react'
+import '../styles/Contact.css';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const form = useRef();
@@ -29,14 +29,17 @@ export default function Contact() {
   };
 
   return (
+
     <div id="contact" className="contact">
       <div className="contact-content">
         <h1 className="contact-content-text">Contact Us</h1>
         <span>Need to get in touch with us ...</span>
+
       </div>
 
       <div className="contact-form">
         <form ref={form} className="form" onSubmit={sendEmail}>
+
           <div className="contact-field">
             <div className="form-group">
               <input
@@ -67,6 +70,7 @@ export default function Contact() {
                 rows="5"
                 required
               />
+
             </div>
           </div>
 

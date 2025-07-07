@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/VideoGallery.css";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import SpinnerLoader from "./SpinnerLoader";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;;
 
 export default function FoodGallery() {
   const [model, setModel] = useState(false);
@@ -47,6 +48,14 @@ export default function FoodGallery() {
         <video src={tempVideoSrc} controls autoPlay />
         <CloseIcon onClick={() => setModel(false)} />
       </div>
+
+      {loading && (
+        <div className="loading">
+          <SpinnerLoader />
+        </div>
+      )}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
       <div className="gallery">
         {videos.length > 0 && !loading && !error && (
           videos.map((item, index) => {
