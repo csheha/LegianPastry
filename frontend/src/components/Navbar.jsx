@@ -59,6 +59,7 @@ export default function Navbar() {
         <div className="navbar-container">
           <div className="navbar-logo">
             <Link
+              className="link-logo"
               to="hero"
               smooth={true}
               duration={500}
@@ -80,6 +81,7 @@ export default function Navbar() {
             <div className="navbar-links">
               {navItems.map((item, key) => (
                 <Link
+                  className="link"
                   key={key}
                   to={item.to}
                   smooth={true}
