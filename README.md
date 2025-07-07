@@ -19,4 +19,5 @@ bcrypt for password hashing and enhanced account security.
 
 🚢 Deployed on: Vercel /Railway
 
+
 ![image_alt](https://github.com/csheha/LegianPastry/blob/40a2937b6e41f060645eae80ac46236e7afc92fb/landingpage01.png)
