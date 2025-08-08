@@ -5,7 +5,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 
-const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+const API_BASE_URL = `http://localhost:5000`;
 
 export default function ClassManagement() {
   // loading and error
