@@ -5,7 +5,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import Model from "../components/Model.jsx";
 import LoginSignup from "./LoginSignup.jsx";
 
-
 const navItems = [
   { name: "About", href: "#about" },
   { name: "Classes", href: "#class" },
@@ -15,20 +14,16 @@ const navItems = [
 
 export default function Navbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  //state to track login status
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // callback function to recieve login results
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
   const openLoginModal = () => {
-    console.log("Login modal opened");
     setIsLoginModalOpen(true);
   };
   const closeLoginModal = () => {
-    console.log("Login modal closed");
     setIsLoginModalOpen(false);
   };
 
@@ -46,12 +41,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  //Handle Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     alert("Logged out successfully.");
   };
+
+  // Smooth scroll handler for nav links
+  const handleNavClick = (e, href) => {
+    e.preventDefault(); // Prevent default anchor behavior
+    setMenuOpen(false);
+    const id = href.replace("#", "");
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
@@ -75,7 +81,7 @@ export default function Navbar() {
                 <a
                   key={key}
                   href={item.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.name}
                 </a>
@@ -84,17 +90,18 @@ export default function Navbar() {
 
             <div className="navbar-login">
               <a
-                href="#login"
-                onClick={() => {
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
                   setMenuOpen(false);
                   if (isLoggedIn) {
-                    handleLogout(); // You'll need to define this function
+                    handleLogout();
                   } else {
                     openLoginModal();
                   }
                 }}
               >
-                {isLoggedIn ? "Logout" : "Login"}
+                {isLoggedIn ? "Login" : "Logout"}
               </a>
             </div>
           </div>
@@ -106,8 +113,9 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+
       {isLoginModalOpen && (
-        <Model>
+        <Model onClose={closeLoginModal}>
           <LoginSignup
             onClose={closeLoginModal}
             onLoginSuccess={handleLoginSuccess}

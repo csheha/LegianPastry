@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res) => {
+  console.log("Signup request body:", req.body);
+
   const { email, username, address, contactNumber, password } = req.body;
   try {
     //1. validate inputs

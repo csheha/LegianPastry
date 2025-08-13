@@ -4,7 +4,8 @@ import "../styles/UserManagement.css";
 import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
 import EditIcon from "@mui/icons-material/Edit";
 
-const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+const API_BASE_URL = `http://localhost:5000`;
 
 export default function UserManagement() {
   // managing states
