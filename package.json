@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@remix-run/dev": "^2.16.8",
-    "aos": "^2.3.4",
-    "express-async-handler": "^1.2.0",
-    "multer": "^2.0.1"
-  }
-}

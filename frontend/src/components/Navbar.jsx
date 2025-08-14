@@ -101,7 +101,7 @@ export default function Navbar() {
                   }
                 }}
               >
-                {isLoggedIn ? "Login" : "Logout"}
+                {isLoggedIn ? "Logout" : "Login"}
               </a>
             </div>
           </div>

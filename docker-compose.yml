@@ -1,0 +1,30 @@
+#services :  server(backend) and client(frontend)  (no need mongo bcz atlas is used)
+services:
+  server:
+    build: ./backend
+    container_name: server_container
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app-lp-backend
+      - ./backend/node_modules:/app-lp-backend/node_modules
+      - ./backend/uploads:/app-lp-backend/uploads
+    environment:
+      CONNECTION_STRING: mongodb+srv://cshehani44:0Z2pS23vimyo7xEc@cluster-legianpastry.rk8d9cu.mongodb.net/<databaseName>?retryWrites=true&w=majority
+      JWT_SECRET: hahufahiuhajshdkja1a45
+      PORT: 5000
+
+  client:
+    build: ./frontend
+    container_name: client_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    stdin_open: true # keep stdin open
+    tty: true # terminal interaction
+    volumes:
+      - ./frontend:/app-lp-frontend
+      - ./frontend/node_modules:/app-lp-frontend/node_modules
+
+volumes: {}
