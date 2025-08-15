@@ -16,6 +16,14 @@ export default function Navbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Check if user is already logged in on component mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
@@ -23,6 +31,7 @@ export default function Navbar() {
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
   };
+
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
   };
@@ -43,7 +52,8 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    setIsLoggedIn(false);v
+    setMenuOpen(false);
     alert("Logged out successfully.");
   };
 
@@ -93,11 +103,11 @@ export default function Navbar() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  setMenuOpen(false);
                   if (isLoggedIn) {
-                    handleLogout();
+                    handleLogout(); // No modal - just logout
                   } else {
-                    openLoginModal();
+                    setMenuOpen(false);
+                    openLoginModal(); // Opens modal for login
                   }
                 }}
               >
