@@ -1,0 +1,13 @@
+.home-container {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  margin: 0;
+  background-color: #ac1212;
+
+  background: linear-gradient(
+    71deg,
+    rgba(57, 31, 6, 0.95) 55.73%,
+    #9f5611 80.62%
+  );
+}

@@ -1,0 +1,33 @@
+/* Hide LottieLab watermark */
+.lottie-no-watermark {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hide any text elements that might be watermarks */
+.lottie-no-watermark svg text,
+.lottie-no-watermark canvas + div,
+.lottie-no-watermark .lottie-watermark,
+.lottie-no-watermark [class*="watermark"],
+.lottie-no-watermark [id*="watermark"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Alternative: Crop the bottom part where watermark usually appears */
+.lottie-no-watermark {
+  height: 580px !important; /* Slightly less than 600px to crop bottom */
+  overflow: hidden;
+}
+
+/* Or use a mask to hide specific areas */
+.lottie-no-watermark::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px; /* Adjust height as needed */
+  background: white; /* Match your background color */
+  pointer-events: none;
+}

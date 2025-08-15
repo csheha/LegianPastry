@@ -1,0 +1,55 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@lottiefiles/react-lottie-player": "^3.6.0",
+    "@mui/icons-material": "^5.17.1",
+    "@mui/material": "^5.15.15",
+    "@react-oauth/google": "^0.12.2",
+    "aos": "^2.3.4",
+    "appwrite": "^18.1.1",
+    "axios": "^1.10.0",
+    "jwt-decode": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.9.3",
+    "swiper": "^11.2.8",
+    "web-vitals": "^5.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^7.6.2"
+  }
+}

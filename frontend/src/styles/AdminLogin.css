@@ -1,0 +1,97 @@
+.admin-login-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(
+    --background-white,
+    #4c2e0e
+  ); /* Matches the form background */
+  border-bottom: 1px solid var(--border-light, #ddd); /* Subtle bottom border */
+  padding: 10px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Logo image styling */
+.admin-login-logo {
+  height: 50px; /* Adjust height as needed */
+  object-fit: contain;
+}
+
+/* Center the entire login container */
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(
+    --background-light,
+    #f9f9f9
+  ); /* Light background color */
+}
+
+/* Style for the login form wrapper */
+.admin-login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border: 1px solid var(--border-light, #ddd); /* Light border */
+  border-radius: 8px;
+  background-color: var(--background-white, #fff); /* White card background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Title styling */
+.admin-login-title {
+  font-family: var(--font-primary, Arial, sans-serif);
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input field styling */
+.admin-login-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-light, #ddd); /* Light border */
+  border-radius: 6px;
+  font-family: var(--font-primary, Arial, sans-serif);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.admin-login-input:focus {
+  border-color: var(--accent-light, #bbb); /* Slightly darker on focus */
+}
+
+/* Button styling */
+.admin-login-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-primary, Arial, sans-serif);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--accent, #333); /* Neutral button background */
+  color: var(--text-light, #fff); /* White text */
+}
+
+.admin-login-button:hover {
+  background-color: var(--accent-dark, #555); /* Darker background on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight hover shadow */
+}
+
+/* Error message styling */
+.admin-login-error {
+  font-family: var(--font-primary, Arial, sans-serif);
+  font-size: 14px;
+  color: var(--error, #d9534f); /* Subtle error color */
+  text-align: center;
+  margin-bottom: 15px;
+}

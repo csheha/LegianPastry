@@ -1,0 +1,218 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+input,
+textarea {
+  font-family: "Inria Serif", serif;
+}
+
+/* Container */
+.contact {
+  width: 100%;
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: #000 solid 2px;
+  /* background: #efefd0; */
+}
+
+/* Left side content */
+.contact-content {
+  width: 25%;
+  min-width: 250px;
+  height: 500px;
+  background: linear-gradient(
+      0deg,
+      rgba(215, 185, 156, 0.8) 0%,
+      rgba(215, 185, 156, 0.8) 100%
+    ),
+    var(--Background-color-primary, #fff);
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.contact-content-text {
+  font-size: 35px;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #000000;
+}
+
+.contact-content span {
+  margin-left: 20px;
+  line-height: 2;
+  font-weight: 500;
+  align-self: center;
+  color: #625c5c;
+}
+
+/* Right side form */
+.contact-form {
+  width: 40%;
+  min-width: 300px;
+  height: 500px;
+  float: right;
+  border-radius: 0 10px 10px 0;
+  background-color: #ecf0f3;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Form fields container */
+.contact-field {
+  display: table;
+  width: 100%;
+}
+
+/* Inputs and textareas */
+.contact-field input,
+.contact-field textarea {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+  color: #555;
+  padding: 20px 10px 20px 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-field textarea {
+  height: 150px;
+  resize: none;
+}
+
+/* Grouping input fields side by side */
+.form-group {
+  width: 46%;
+  float: left;
+  padding: 0 30px;
+  margin: 14px 12px;
+  border-radius: 25px;
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
+  box-sizing: border-box;
+}
+
+.contact-field .form-group:last-child {
+  width: 96%;
+  clear: both;
+  margin-top: 20px;
+}
+
+/* Submit button */
+.submit-button {
+  width: 96%;
+  height: 40px;
+  margin: 0 12px;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: #000000;
+  text-align: center;
+
+  transition: 0.5s;
+
+  background: #ffb319;
+  box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5),
+    0px 8px 32px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.submit-button:hover {
+  background: #ffb319;
+  color: black;
+}
+
+/* Tablet devices (iPad etc.) */
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  .contact {
+    padding: 50px 20px;
+  }
+
+  /* Stack side-by-side sections vertically but still with some width */
+  .contact-content,
+  .contact-form {
+    width: 90% !important;
+    height: auto;
+    float: none;
+    margin: 10px auto;
+    border-radius: 10px;
+  }
+
+  /* Adjust font size for headings on tablets */
+  .contact-content-text {
+    font-size: 28px;
+  }
+
+  /* Form groups: keep side-by-side but narrower */
+  .form-group {
+    width: 48%;
+    margin: 10px 1% !important;
+    padding: 0 15px;
+  }
+
+  /* Make submit button full width but narrower */
+  .submit-button {
+    width: 100% !important;
+    margin: 15px 0 0 0 !important;
+  }
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 767px) {
+  .contact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .contact-content,
+  .contact-form {
+    width: 100% !important;
+    height: auto;
+    float: none;
+    margin: 0 0 20px 0;
+    border-radius: 10px;
+  }
+
+  .contact-content {
+    padding: 30px 15px;
+  }
+  .contact-form {
+    padding: 25px 15px;
+  }
+
+  /* Stack form groups vertically */
+  .form-group {
+    width: 100% !important;
+    float: none !important;
+    padding: 0;
+    margin: 12px 0;
+  }
+
+  .contact-field .form-group:last-child {
+    width: 100% !important;
+    margin-top: 12px;
+  }
+
+  /* Full width submit button */
+  .submit-button {
+    width: 100% !important;
+    margin: 10px 0 0 0 !important;
+  }
+}

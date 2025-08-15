@@ -1,0 +1,24 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* dark transparent overlay */
+  backdrop-filter: blur(8px); /* ⬅️ this creates the blur effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: transparent;
+  border-radius: 10px;
+  padding: 2rem;
+  min-width: 320px;
+  max-width: 90vw;
+
+  position: relative;
+}

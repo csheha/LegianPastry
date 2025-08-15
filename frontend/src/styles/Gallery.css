@@ -1,0 +1,322 @@
+.gallery-section {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 20px;
+}
+
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.gallery-title {
+  font-size: 24px;
+  font-family: "Inria Serif", serif;
+  margin-bottom: 16px;
+  color: #af5b5b;
+  /* Initial State Hidden */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* When animate class is added */
+.gallery-section.animate .gallery-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 40px;
+}
+
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Initial State Hideen */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* Stagger Animation for cards when animate class is added */
+.gallery-section.animate .gallery-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+
+.image-one,
+.image-four,
+.image-six {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  /* Image hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease,
+    opacity 0.6s ease-out;
+  cursor: pointer;
+  /* Initial state for images */
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.image-two,
+.image-three,
+.image-five {
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+  /* Image hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease,
+    opacity 0.6s ease-out;
+  cursor: pointer;
+  /* Initial state for images */
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.gallery-section.animate .gallery-card:nth-child(1) .image-one {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.4s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(1) .image-three {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.5s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(2) .image-two {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.6s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(2) .image-four {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.7s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(3) .image-six {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.8s;
+}
+
+.gallery-section.animate .gallery-card:nth-child(3) .image-five {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.9s;
+}
+
+/* Hover effects - only apply when not in initial :state */
+.gallery-card img:hover {
+  transform: scale(1.05) rotate(1deg) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Alternative hover effects */
+.image-one:hover,
+.image-four:hover {
+  transform: scale(1.08) translateY(-5px) !important;
+}
+
+.image-two:hover,
+.image-five:hover {
+  transform: scale(1.06) translateY(5px) !important;
+}
+
+.image-three:hover,
+.image-six:hover {
+  transform: scale(1.06) translateY(-5px) !important;
+}
+
+.gallery-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  pointer-events: none;
+  z-index: 1;
+  padding: 20px;
+}
+
+.text-one span,
+.text-two span {
+  font-size: 120px;
+  font-weight: 1000;
+  font-family: "Inria Serif", serif;
+  color: rgba(0, 0, 0, 0.2);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5);
+  transform: rotate(-90deg);
+  display: inline-block;
+  /* Initial State - hidden */
+  opacity: 0;
+  transform: rotate(-90deg) translateX(-100px) scale(0.8);
+  transition: all 1.2s ease-out;
+}
+
+.text-one {
+  position: absolute;
+  bottom: 150px;
+  left: -200px;
+}
+
+.text-two {
+  position: absolute;
+  top: 100px;
+  right: -200px;
+}
+
+/* Text animation when animate class is added */
+.gallery-section.animate .text-one span {
+  opacity: 1;
+  transform: rotate(-90deg) translateX(0) scale(1);
+  transition-delay: 0.8s;
+  /* Add floating animation after initial animation */
+  animation: float 3s ease-in-out 2s infinite;
+}
+
+.gallery-section.animate .text-two span {
+  opacity: 1;
+  transform: rotate(-90deg) translateX(0) scale(1);
+  transition-delay: 1s;
+  /* Add floating animation after initial animation */
+  animation: float 3s ease-in-out 2s infinite;
+}
+
+.gallery-wrapper {
+  position: relative;
+}
+
+.arrow-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  /* Arrow Animation */
+  opacity: 0;
+  transform: translateX(0);
+  transition: all 0.8s ease-out;
+}
+
+/* Arrow animation when animate class is added */
+.gallery-section.animate .arrow-container {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 1.2s;
+}
+
+.arrow-icon {
+  font-size: 48px !important;
+  color: #ffb219df;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 100%;
+  box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5),
+    0px 8px 32px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.gallery-section.animate .arrow-icon {
+  /* Pulse animation - only when animated */
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.arrow-icon:hover {
+  transform: scale(1.2) translateX(5px);
+  color: #ffb319;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: rotate(-90deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-90deg) translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 980px) {
+  .gallery-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .text-one span,
+  .text-two span {
+    font-size: 120px;
+  }
+
+  .text-one {
+    bottom: 150px;
+  }
+
+  .text-two {
+    top: 150px;
+  }
+
+  .gallery-title {
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-one span,
+  .text-two span {
+    font-size: 120px;
+  }
+
+  .text-one,
+  .text-two {
+    display: none;
+  }
+
+  .gallery-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  /* Adjust animation for mobile */
+  .gallery-card img:hover {
+    transform: scale(1.03);
+  }
+}
