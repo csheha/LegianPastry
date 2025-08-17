@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import burgerIcon from "../assets/burger.png";
 import "../styles/Navbar.css";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUser, FaSignOutAlt } from "react-icons/fa";
 import Model from "../components/Model.jsx";
 import LoginSignup from "./LoginSignup.jsx";
 
@@ -15,32 +15,55 @@ const navItems = [
 export default function Navbar() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   // Check if user is already logged in on component mount
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
+    const userData = localStorage.getItem("userData");
+
+    if (token && userData) {
+      try {
+        const parsedUserData = JSON.parse(userData);
+        setUser(parsedUserData);
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem("token");
+        localStorage.removeItem("userData");
+      }
     }
   }, []);
 
-  const handleLoginSuccess = () => {
+  // Handle successful login
+  const handleLoginSuccess = (token, userData) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    setUser(userData);
     setIsLoggedIn(true);
   };
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
+    setMenuOpen(false);
   };
 
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
   };
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
+  const toggleUserDropdown = () => {
+    setUserDropdownOpen((prev) => !prev);
+  };
+
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -50,16 +73,33 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setUserDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false);v
+    localStorage.removeItem("userData");
+    setUser(null);
+    setIsLoggedIn(false);
+    setUserDropdownOpen(false);
     setMenuOpen(false);
     alert("Logged out successfully.");
   };
 
   // Smooth scroll handler for nav links
   const handleNavClick = (e, href) => {
-    e.preventDefault(); // Prevent default anchor behavior
+    e.preventDefault();
     setMenuOpen(false);
     const id = href.replace("#", "");
     const element = document.getElementById(id);
@@ -99,20 +139,49 @@ export default function Navbar() {
             </div>
 
             <div className="navbar-login">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (isLoggedIn) {
-                    handleLogout(); // No modal - just logout
-                  } else {
-                    setMenuOpen(false);
-                    openLoginModal(); // Opens modal for login
-                  }
-                }}
-              >
-                {isLoggedIn ? "Login" : "Logout"}
-              </a>
+              {isLoggedIn ? (
+                <div className="user-dropdown" ref={dropdownRef}>
+                  <button
+                    className="user-button"
+                    onClick={toggleUserDropdown}
+                    aria-expanded={userDropdownOpen}
+                  >
+                    <FaUser size={16} />
+                    <span className="username">
+                      {user?.username || user?.email || "User"}
+                    </span>
+                    <span
+                      className={`dropdown-arrow ${
+                        userDropdownOpen ? "open" : ""
+                      }`}
+                    >
+                      ▼
+                    </span>
+                  </button>
+
+                  {userDropdownOpen && (
+                    <div className="dropdown-menu">
+                      <button
+                        className="dropdown-item logout-btn"
+                        onClick={handleLogout}
+                      >
+                        <FaSignOutAlt size={14} />
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openLoginModal();
+                  }}
+                >
+                  Login
+                </a>
+              )}
             </div>
           </div>
 

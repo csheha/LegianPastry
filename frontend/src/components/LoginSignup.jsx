@@ -1,10 +1,9 @@
 import React from "react";
-import "../styles/LoginSignup.css"; // Assuming you have a CSS file for styles
-import logo from "../assets/Frame.png"; // Adjust the path as necessary
+import "../styles/LoginSignup.css";
+import logo from "../assets/Frame.png";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//Integrate Google Login
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
@@ -12,10 +11,7 @@ import { jwtDecode } from "jwt-decode";
 const API_BASE_URL = `http://localhost:5000`;
 
 export default function LoginSignup({ onClose, onLoginSuccess }) {
-  //inside login box navbar switch between login and signup
-  const [activeTab, setActiveTab] = useState("login"); // Default to login tab
-
-  //UseStates for handle use login
+  const [activeTab, setActiveTab] = useState("login");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
@@ -23,10 +19,9 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  //using use Navigate hook
   const navigate = useNavigate();
 
-  //Login Handle function
+  // Login Handle function
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -35,19 +30,29 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
         email,
         password,
       });
-      setMessage(`Login successful! Token: ${res.data.token} `);
+
+      // Extract token and user data from response
+      const token = res.data.token;
+      const userData = res.data.user || {
+        email: email,
+        username: res.data.username || email.split("@")[0],
+      };
+
+      setMessage("Login successful!");
+
+      // Call the parent component's success handler
+      if (onLoginSuccess) {
+        onLoginSuccess(token, userData);
+      }
 
       // Close the modal
       if (onClose) {
         onClose();
       }
-      //navigate to home
-      navigate("/");
-      console.log(`Login successful! Token: ${res.data.token} `);
 
-      if (onLoginSuccess) {
-        onLoginSuccess(); // This updates isLoggedIn in Navbar
-      }
+      // Navigate to home
+      navigate("/");
+      console.log("Login successful! Token:", token);
     } catch (err) {
       setMessage(
         err.response?.data?.message || "Login failed. Check your credentials."
@@ -55,7 +60,7 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
     }
   };
 
-  //SignUp Handle function
+  // SignUp Handle function
   const handleSignUp = async (e) => {
     e.preventDefault();
 
@@ -67,17 +72,26 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
         contactNumber,
         password,
       });
-      setMessage(`SignUp successful! `);
 
-      console.log(`SignUp successful! `);
-      //navigate to login
+      setMessage("SignUp successful!");
+      console.log("SignUp successful!");
+
+      // Switch to login tab after successful signup
       setActiveTab("login");
+
+      // Clear form fields
+      setEmail("");
+      setUsername("");
+      setAddress("");
+      setContactNumber("");
+      setPassword("");
     } catch (err) {
       setMessage(
         err.response?.data?.message || "Signup failed. Please try again."
       );
     }
   };
+
   // Google Login Success Handler
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
@@ -85,15 +99,26 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
       const decodedToken = jwtDecode(credentialResponse.credential);
       console.log(decodedToken);
 
+      // Create user data from Google token
+      const userData = {
+        email: decodedToken.email,
+        username: decodedToken.name,
+        picture: decodedToken.picture,
+        isGoogleUser: true,
+      };
+
       setMessage("Google login successful!");
+
+      // Call the parent component's success handler
+      if (onLoginSuccess) {
+        onLoginSuccess(credentialResponse.credential, userData);
+      }
 
       // Close the modal
       if (onClose) {
         onClose();
       }
-      if (onLoginSuccess) {
-        onLoginSuccess(); // This updates isLoggedIn in Navbar
-      }
+
       // Navigate to home page
       navigate("/");
     } catch (error) {
@@ -101,13 +126,14 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
       setMessage("Google login failed. Please try again.");
     }
   };
+
   // Google Login Error Handler
   const handleGoogleError = () => {
     console.log("Google Login Failed");
     setMessage("Google login failed. Please try again.");
   };
 
-  //admin button handle function
+  // Admin button handle function
   const handleAdminClick = () => {
     navigate("/admin/login");
   };
@@ -116,7 +142,6 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
     <>
       <div className="login-main">
         <div className="Login-Navbar">
-          {/* Login tab plane */}
           <button className="close-btn" onClick={onClose}>
             ×
           </button>
@@ -165,7 +190,9 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="email"
                         className="placeholder"
                         placeholder="Enter your email"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -182,16 +209,19 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="password"
                         className="placeholder"
                         placeholder="Enter your password"
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
                   <div className="lpf-buttons">
                     <div className="lpf-button">
-                      <button className="liquidglass-button">Login</button>
+                      <button type="submit" className="liquidglass-button">
+                        Login
+                      </button>
                     </div>
                     <div className="lpf-button">
-                      {/* Fixed Google Login - removed nested button structure */}
                       <GoogleLogin
                         onSuccess={handleGoogleSuccess}
                         onError={handleGoogleError}
@@ -218,13 +248,13 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
               </div>
             </div>
           )}
-          {/* Sign up tab plane */}
+
           {activeTab === "signup" && (
             <div className="login-sub-content">
               <div className="login-sub">
                 <div className="login-sub-content-wrapper">
                   <button
-                    onClick={() => setActiveTab("login")}
+                    onClick={() => setActiveTab("signup")}
                     className="login-sub-content-wrapper-button"
                   >
                     <span className="login-sub-content-wrapper-button-text">
@@ -259,7 +289,9 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="email"
                         className="placeholder"
                         placeholder="Enter your email"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -271,7 +303,9 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="username"
                         className="placeholder"
                         placeholder="Enter your username"
+                        value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -283,7 +317,9 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="address"
                         className="placeholder"
                         placeholder="Enter your address"
+                        value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -295,7 +331,9 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="contactnumber"
                         className="placeholder"
                         placeholder="+94 785691234"
+                        value={contactNumber}
                         onChange={(e) => setContactNumber(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
@@ -312,32 +350,26 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
                         id="password"
                         className="placeholder"
                         placeholder="Enter your password"
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
                   <div className="lpf-buttons">
                     <div className="lpf-button">
-                      <button className="liquidglass-button">Sign Up</button>
+                      <button type="submit" className="liquidglass-button">
+                        Sign Up
+                      </button>
                     </div>
                     <div className="lpf-button">
-                      <button className="lpf-button-google">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M21 11.79C21 15.94 18.79 21 12.13 21C7.12461 21.0332 3.03852 17.0053 3 12C3.03852 6.99461 7.12461 2.9667 12.13 2.99996C14.2007 3.00764 16.2085 3.71213 17.83 4.99996C17.942 5.09149 18.0109 5.22557 18.02 5.36996C18.0206 5.51605 17.963 5.65637 17.86 5.75996C17.209 6.35516 16.5882 6.98261 16 7.63996C15.8289 7.82826 15.5422 7.85432 15.34 7.69996C14.4161 7.01624 13.2888 6.66394 12.14 6.69996C9.18528 6.69996 6.79 9.09524 6.79 12.05C6.79 15.0047 9.18528 17.4 12.14 17.4C15.14 17.4 16.41 16.12 17.07 13.85H12.5C12.2239 13.85 12 13.6261 12 13.35V10.7C12 10.4238 12.2239 10.2 12.5 10.2H20.5C20.7302 10.1985 20.9244 10.3711 20.95 10.6C20.9871 10.9955 21.0038 11.3927 21 11.79Z"
-                            fill="black"
-                          />
-                        </svg>
-                        Login with Google
-                      </button>
+                      <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={handleGoogleError}
+                        text="signup_with"
+                        theme="outline"
+                        size="large"
+                      />
                     </div>
                   </div>
                 </div>
@@ -345,6 +377,16 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
               <button className="admin-login" onClick={handleAdminClick}>
                 Admin
               </button>
+              {message && (
+                <p
+                  style={{
+                    marginTop: 10,
+                    color: message.includes("successful") ? "yellow" : "red",
+                  }}
+                >
+                  {message}
+                </p>
+              )}
             </div>
           )}
         </div>

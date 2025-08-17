@@ -2,7 +2,6 @@ services:
   server:
     build:
       context: ../backend
-      dockerfile: ../deployment/backend/Dockerfile
     container_name: server_container
     ports:
       - "5000:5000"
@@ -18,7 +17,6 @@ services:
   client:
     build:
       context: ../frontend
-      dockerfile: ../deployment/frontend/Dockerfile
     container_name: client_nginx
     ports:
       - "80:80"
