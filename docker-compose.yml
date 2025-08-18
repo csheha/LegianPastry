@@ -1,0 +1,33 @@
+services:
+  # mongo:
+  #   image: mongo
+  #   container_name: mongo_receipepick
+  #   volumes:
+  #     - mongo_data:/data/db
+  #   ports:
+  #     - "27017:27017"
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend_receipepick
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./backend:/app
+      - ./backend/node_modules:/app/node_modules
+      - ./backend/uploads:/app/uploads
+    environment:
+      - ../backend/.env
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_receipepick
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - ./frontend/node_modules:/app/node_modules

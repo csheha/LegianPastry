@@ -4,7 +4,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import SpinnerLoader from "./SpinnerLoader";
 
-const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+// const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+const API_BASE_URL = `http://localhost:5000`;
 
 export default function FoodGallery() {
   const [model, setModel] = useState(false);
