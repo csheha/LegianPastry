@@ -1,3 +1,4 @@
+
 IMAGE_APP=legianpastry-app
 IMAGE=legianpastry-react
 
@@ -6,24 +7,23 @@ echo "login to docker repo..."
 echo "$PASSWORD" | docker login --username=$DOCKER_USER $DOCKER_HOST --password-stdin
 
 echo "pushing legianpastry-react:latest to docker repo.."
-docker tag $IMAGE:latest $DOCKER_HOST/$DOCKER_USER/$IMAGE:latest
+docker tag $IMAGE:latest $DOCKER_HOST/$IMAGE:latest
 
 if [ "$1" == "front" ]; then
-  docker push $DOCKER_HOST/$DOCKER_USER/$IMAGE:latest
+  docker push $DOCKER_HOST/$IMAGE:latest
 fi
 
 echo "pushing legianpastry-app:latest to docker repo.."
-docker tag $IMAGE_APP:latest $DOCKER_HOST/$DOCKER_USER/$IMAGE_APP:latest
+docker tag $IMAGE_APP:latest $DOCKER_HOST/$IMAGE_APP:latest
 
-if [ "$1" == "back" ]; then
-  docker push $DOCKER_HOST/$DOCKER_USER/$IMAGE_APP:latest
+if [ "$2" == "back" ]; then
+  docker push $DOCKER_HOST/$IMAGE_APP:latest
 fi
-
 
 echo "completed pushing to repo.."
 echo "================================================================"
 echo "login to hosting site"
-echo "[cd legianpastry/deploy]"
+echo "[cd legianpastry/deployment]"
 echo "[run ./build-remote.sh]"
 
 
