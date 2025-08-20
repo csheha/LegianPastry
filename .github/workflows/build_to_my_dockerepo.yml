@@ -24,13 +24,6 @@ jobs:
         run: bash deployment/docker_build_all.sh front back
 
       - name: Tag and push images
-        run: |
-          echo "Pushing frontend image..."
-          docker tag cshehani/legianpastry-react:latest cshehani/legianpastry-react:${{ env.SHORT_SHA }}
-          docker push cshehani/legianpastry-react:${{ env.SHORT_SHA }}
-          docker push cshehani/legianpastry-react:latest
-
-          echo "Pushing backend image..."
-          docker tag cshehani/legianpastry-app:latest cshehani/legianpastry-app:${{ env.SHORT_SHA }}
-          docker push cshehani/legianpastry-app:${{ env.SHORT_SHA }}
-          docker push cshehani/legianpastry-app:latest
+        run: bash deployment/push_to_mydocker.sh front back
+        env:
+          GITHUB_SHA: ${{ env.SHORT_SHA }}
