@@ -20,11 +20,17 @@ jobs:
         id: vars
         run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: ./
-          push: true
-          tags: |
-            cshehani/legian-pastry:${{ env.SHORT_SHA }}
-            cshehani/legian-pastry:latest
+      - name: Build images with docker-compose
+        run: docker compose build
+
+      - name: Tag and push images
+        run: |
+          # Frontend
+          docker tag cshehani/legian-pastry-frontend:latest cshehani/legian-pastry-frontend:${{ env.SHORT_SHA }}
+          docker push cshehani/legian-pastry-frontend:${{ env.SHORT_SHA }}
+          docker push cshehani/legian-pastry-frontend:latest
+
+          # Backend
+          docker tag cshehani/legian-pastry-backend:latest cshehani/legian-pastry-backend:${{ env.SHORT_SHA }}
+          docker push cshehani/legian-pastry-backend:${{ env.SHORT_SHA }}
+          docker push cshehani/legian-pastry-backend:latest
