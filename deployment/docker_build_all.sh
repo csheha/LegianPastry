@@ -5,13 +5,13 @@ echo "building front end application env $BUILD_ENV"
 if [ "$1" == "front" ]; then
     cd ../frontend
     echo "building front end docker image.."
-    docker build -t cshehani/legianpastry-react .
+    docker build -t cshehani/legianpastry-react $GITHUB_WORKSPACE/frontend
 fi
 
 if [ "$2" == "back" ]; then
     cd ../backend
     echo "building back end docker image.."
-    docker build -t cshehani/legianpastry-app .
+    docker build -t cshehani/legianpastry-app $GITHUB_WORKSPACE/frontend
 fi
 
 
