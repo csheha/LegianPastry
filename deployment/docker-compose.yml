@@ -5,10 +5,6 @@ services:
     container_name: server_container
     ports:
       - "5000:5000"
-    volumes:
-      - ../backend:/app
-      - ../backend/node_modules:/app/node_modules
-      - ../backend/uploads:/app/uploads
     env_file:
       - ../backend/.env
     networks:

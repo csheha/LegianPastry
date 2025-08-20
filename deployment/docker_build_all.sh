@@ -14,16 +14,9 @@ if [ "$2" == "back" ]; then
     docker build -t legianpastry-app .
 fi
 
-#cd ../report_service
-#echo "building report service docker image.."
-#docker build -t report_service .
-
-#cd ../../jsonjasperpdf
-#echo "building jsonpdf docker image.."
-#docker build  -t jsonpdf .
 
 cd ../deployment
 echo "completed building and creating docker images"
 echo "================================================================"
-echo "execute ./push_to_docker_repo.sh after this build is verified"
+echo "execute ./push_to_docker.sh after this build is verified"
 
