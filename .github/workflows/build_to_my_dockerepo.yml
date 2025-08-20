@@ -25,12 +25,12 @@ jobs:
 
       - name: Tag and push images
         run: |
-          # Frontend
+          echo "Pushing frontend image..."
           docker tag cshehani/legianpastry-react:latest cshehani/legianpastry-react:${{ env.SHORT_SHA }}
           docker push cshehani/legianpastry-react:${{ env.SHORT_SHA }}
           docker push cshehani/legianpastry-react:latest
 
-          # Backend
+          echo "Pushing backend image..."
           docker tag cshehani/legianpastry-app:latest cshehani/legianpastry-app:${{ env.SHORT_SHA }}
           docker push cshehani/legianpastry-app:${{ env.SHORT_SHA }}
           docker push cshehani/legianpastry-app:latest
