@@ -21,7 +21,7 @@ jobs:
         run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Build images with docker-compose
-        run: bash deployment/docker_build_all.sh
+        run: bash deployment/docker_build_all.sh front back
 
       - name: Tag and push images
         run: |
