@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/UserManagement.css";
 import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
-import EditIcon from "@mui/icons-material/Edit";
+// import EditIcon from "@mui/icons-material/Edit"; // Remove if not used
 
-const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+const API_BASE_URL = `http://localhost:5000`;
 
 export default function UserManagement() {
   // managing states

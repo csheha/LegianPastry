@@ -5,14 +5,15 @@ import axios from "axios";
 import "../styles/GalleryManagement.css";
 import CloseIcon from "@mui/icons-material/Close";
 
-const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+const API_BASE_URL = `http://localhost:5000`;
 
 export default function GalleryManagement() {
   // loading and error
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // add button
-  const [isAddButton, setIsAddButton] = useState(false);
+  // Removed unused isAddButton state
   // dailog box
   const dialogRef = useRef(null);
   // image add form data
@@ -42,14 +43,14 @@ export default function GalleryManagement() {
   // 2. Handling dailog box open when click Add button
 
   const openDialog = () => {
-    setIsAddButton(true);
+  // Removed unused setIsAddButton call
     if (dialogRef.current) {
       dialogRef.current.showModal();
     }
   };
 
   const closeDialog = () => {
-    setIsAddButton(false);
+  // Removed unused setIsAddButton call
     if (dialogRef.current) {
       dialogRef.current.close();
     }
@@ -110,49 +111,53 @@ export default function GalleryManagement() {
   };
 
   // Handle edit option
-  const handleEdit = async (image) => {
-    // Populate the dialog with existing details
+  const [editingImage, setEditingImage] = useState(null);
+
+  const handleEdit = (image) => {
+    setEditingImage(image);
     setTitle(image.title);
     setDescription(image.description);
-    setFile(null); // Optionally
-
+    setFile(null);
     openDialog();
-
-    //handle form submission after editing
-    const handleEditSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const formData = new FormData();
-        formData.append("title", title.trim());
-        formData.append("description", description.trim());
-        if (file) formData.append("image", file);
-
-        // Send PUT request to backend
-        const res = await axios.put(
-          `${API_BASE_URL}/images/${image._id}`,
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-
-        // Update the image in state
-        setImages(
-          images.map((img) =>
-            img._id === image._id ? { ...img, ...res.data } : img
-          )
-        );
-
-        alert("Image updated successfully!");
-        closeDialog();
-      } catch (err) {
-        console.error("Error editing image:", err);
-        alert("Failed to edit image.");
-      }
-      return handleEditSubmit;
-    };
   };
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    if (!editingImage) return;
+
+    try {
+      const formData = new FormData();
+      formData.append("title", title.trim());
+      formData.append("description", description.trim());
+      if (file) formData.append("image", file);
+
+      // Send PUT request to backend
+      const res = await axios.put(
+        `${API_BASE_URL}/images/${editingImage._id}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      // Update the image in state
+      setImages(
+        images.map((img) =>
+          img._id === editingImage._id ? { ...img, ...res.data } : img
+        )
+      );
+
+      alert("Image updated successfully!");
+      closeDialog();
+      setEditingImage(null);
+      setTitle("");
+      setDescription("");
+      setFile(null);
+    } catch (err) {
+      console.error("Error editing image:", err);
+      alert("Failed to edit image.");
+    }
+  };
   // Conditional Rendering of Hooks
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -186,58 +191,48 @@ export default function GalleryManagement() {
   }
 
   return (
-    <div className="GalleryManagement">
-      {/* Add Images to the Gallery*/}
-      <div className="Add-Image">
-        <div className="Add-image-section">
-          <button className="Add-image-button" onClick={openDialog}>
-            Add
+    <div>
+      <dialog ref={dialogRef}>
+        <form onSubmit={editingImage ? handleEditSubmit : handleSubmit}>
+          <button type="button" onClick={() => { closeDialog(); setEditingImage(null); }}>
+            <CloseIcon />
           </button>
-          <dialog ref={dialogRef}>
-            <form onSubmit={handleSubmit}>
-              <button type="button" onClick={closeDialog}>
-                <CloseIcon />
-              </button>
-              <label className="label">Title</label>
-              <input
-                type="text"
-                id="title"
-                placeholder="Enter title"
-                className="input-element"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <label className="label">Description</label>
-              <input
-                type="text"
-                id="description"
-                placeholder="Enter description"
-                className="input-element"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-              <label className="label">Choose an Image</label>
-              <input
-                type="file"
-                id="image"
-                accept="image/*"
-                className="input-element"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </dialog>
-        </div>
-      </div>
+          <label className="label">Title</label>
+          <input
+            type="text"
+            id="title"
+            placeholder="Enter title"
+            className="input-element"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <label className="label">Description</label>
+          <input
+            type="text"
+            id="description"
+            placeholder="Enter description"
+            className="input-element"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <label className="label">Choose an Image</label>
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            className="input-element"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          <button type="submit">{editingImage ? "Update" : "Submit"}</button>
+        </form>
+      </dialog>
       {/* Gallery Table */}
       <div className="GalleryTable-Container">
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
-        ) : (
-          <>{/* Rest of your component */}</>
-        )}
+        ) : null}
         <table className="GalleryTable">
           <thead>
             <tr>

@@ -3,8 +3,10 @@ import "../styles/VideoGallery.css";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import SpinnerLoader from "./SpinnerLoader";
+import { useNavigate } from "react-router-dom";
 
-const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+const API_BASE_URL = `http://localhost:5000`;
 
 export default function FoodGallery() {
   const [model, setModel] = useState(false);
@@ -13,12 +15,14 @@ export default function FoodGallery() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const navigate = useNavigate(); // Added useNavigate hook
+
   // Function to fetch the video
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/videos/`);
-        
+
         if (Array.isArray(res.data)) {
           setVideos(res.data);
         } else {
@@ -42,8 +46,29 @@ export default function FoodGallery() {
     setModel(true);
   };
 
+  // Handler for back button click
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <>
+      {/* Back Button */}
+      <button
+        onClick={handleBack}
+        style={{
+          marginBottom: "1rem",
+          padding: "0.5rem 1rem",
+          cursor: "pointer",
+          borderRadius: "4px",
+          border: "none",
+          backgroundColor: "#333",
+          color: "#fff",
+        }}
+      >
+        ← Back
+      </button>
+
       <div className={model ? "model open" : "model"}>
         <video src={tempVideoSrc} controls autoPlay />
         <CloseIcon onClick={() => setModel(false)} />
@@ -57,26 +82,28 @@ export default function FoodGallery() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div className="gallery">
-        {videos.length > 0 && !loading && !error && (
+        {videos.length > 0 &&
+          !loading &&
+          !error &&
           videos.map((item, index) => {
-          return (
-            <div
-              className="videos"
-              key={item.id}
-              onClick={() => getVideo(item)}
-              title={item.food}
-            >
-              <video 
-                src={`${API_BASE_URL}/${item.filepath.replace(/\\/g, '/')}`} 
-                controls 
-                style={{ width: "100%" }}
-                alt={item.food}
-              />
-              <h4>{item.food}</h4>
-              <p>{item.chef}</p>
-            </div>
-          );
-        }))}
+            return (
+              <div
+                className="videos"
+                key={item.id}
+                onClick={() => getVideo(item)}
+                title={item.food}
+              >
+                <video
+                  src={`${API_BASE_URL}/${item.filepath.replace(/\\/g, "/")}`}
+                  controls
+                  style={{ width: "100%" }}
+                  alt={item.food}
+                />
+                <h4>{item.food}</h4>
+                <p>{item.chef}</p>
+              </div>
+            );
+          })}
       </div>
     </>
   );

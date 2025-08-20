@@ -3,8 +3,9 @@ import "../styles/FoodGallery.css";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import SpinnerLoader from "./SpinnerLoader";
+import { useNavigate } from "react-router-dom"; // <-- Added import
 
-// const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
 const API_BASE_URL = `http://localhost:5000`;
 
 export default function FoodGallery() {
@@ -13,6 +14,8 @@ export default function FoodGallery() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate(); // <-- Added useNavigate hook
 
   // Function to fetch the image
   useEffect(() => {
@@ -42,12 +45,44 @@ export default function FoodGallery() {
     setModel(true);
   };
 
+  // Back button handler
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <>
-      <div className={model ? "model open" : "model"}>
-        <img src={tempImgSrc} />
-        <CloseIcon onClick={() => setModel(false)} />
-      </div>
+      {/* CHANGE 3: Back button added */}
+      <button
+        onClick={handleBack}
+        style={{
+          marginBottom: "1rem",
+          padding: "0.5rem 1rem",
+          cursor: "pointer",
+          borderRadius: "4px",
+          border: "none",
+          backgroundColor: "#333",
+          color: "#fff",
+        }}
+      >
+        ← Back
+      </button>
+
+      {/* CHANGE 1: Render modal conditionally only when open */}
+      {model && (
+        <div className="model open">
+          <img src={tempImgSrc} alt="Modal content" />
+          {/* CHANGE 2: Wrap CloseIcon in a button for better accessibility */}
+          <button
+            className="close-button"
+            onClick={() => setModel(false)}
+            aria-label="Close modal"
+            style={{ background: "none", border: "none", cursor: "pointer" }}
+          >
+            <CloseIcon />
+          </button>
+        </div>
+      )}
 
       {loading && (
         <div className="loading">

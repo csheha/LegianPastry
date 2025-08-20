@@ -12,7 +12,7 @@ services:
       context: ./backend
     container_name: backend_receipepick
     ports:
-      - "5001:5000"
+      - "5000:5000"
     volumes:
       - ./backend:/app
       - ./backend/node_modules:/app/node_modules

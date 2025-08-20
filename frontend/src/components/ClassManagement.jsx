@@ -5,7 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 
-// const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
+//const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
 const API_BASE_URL = `http://localhost:5000`;
 
 export default function ClassManagement() {
@@ -20,7 +20,7 @@ export default function ClassManagement() {
   const [file, setFile] = useState(null);
   const [videos, setVideos] = useState([]);
   // add button
-  const [isAddButton, setIsAddButton] = useState(false);
+  // Removed unused isAddButton state
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6; // Items per page
@@ -42,14 +42,14 @@ export default function ClassManagement() {
 
   //Handling dailog box open when click Add button
   const openDialog = () => {
-    setIsAddButton(true);
+  // Removed unused setIsAddButton call
     if (dialogRef.current) {
       dialogRef.current.showModal();
     }
   };
 
   const closeDialog = () => {
-    setIsAddButton(false);
+  // Removed unused setIsAddButton call
     if (dialogRef.current) {
       dialogRef.current.close();
     }
@@ -116,46 +116,10 @@ export default function ClassManagement() {
 
     openDialog();
 
-    //handle form submission after editing
-    const handleEditSubmit = async (e) => {
-      e.preventDefault();
-
-      try {
-        const formData = new FormData();
-        formData.append("food", food.trim());
-        formData.append("chef", chef.trim());
-        if (file) formData.append("video", file);
-
-        // Send PUT request to backend
-        const res = await axios.put(
-          `${API_BASE_URL}/videos/${video._id}`,
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-
-        // Update the video in state
-        setVideos(
-          videos.map((video) =>
-            video._id === video._id ? { ...video, ...res.data } : video
-          )
-        );
-
-        alert("Video updated successfully!");
-        closeDialog();
-      } catch (err) {
-        console.error("Error editing video:", err);
-        alert("Failed to edit video.");
-      }
-      return handleEditSubmit;
-    };
-  };
-
+    // The following code is invalid here because 'e' is not defined.
+    // Editing should be handled via the form's submit handler after dialog is opened.
+  }
   // Conditional Rendering of Hooks
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
   // Pagination logic
   const totalPages = Math.ceil(videos.length / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
@@ -183,14 +147,16 @@ export default function ClassManagement() {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
+
   return (
     <>
-      <div className="ClassManagement">
-        <div className="Add-Video">
-          <div className="Add-image-section">
-            <button className="Add-video-button" onClick={openDialog}>
-              Add
-            </button>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <div className="ClassManagement">
+          <div className="Add-Video">
             <dialog ref={dialogRef}>
               <form onSubmit={handleSubmit}>
                 <button type="button" onClick={closeDialog}>
@@ -227,78 +193,78 @@ export default function ClassManagement() {
               </form>
             </dialog>
           </div>
-        </div>
-        {/* Classes table*/}
-        <div className="ClassTable-Container">
-          {loading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            <>{/* Rest of your component */}</>
-          )}
-          <table className="ClassTable">
-            <thead>
-              <tr>
-                <th className="C-table-header">Food Name</th>
-                <th className="C-table-header">Chef Name</th>
-                <th className="C-table-header">Manage</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.isArray(currentVideos) &&
-                currentVideos.map((video) => (
-                  <tr key={video._id}>
-                    <td className="G-table-data">{video.food || "N/A"}</td>
-                    <td className="G-table-data">{video.chef || "N/A"}</td>
-                    <td className="G-table-data">
-                      <button onClick={() => handleDelete(video._id)}>
-                        <AutoDeleteIcon />
-                      </button>
-                      <button onClick={() => handleEdit(video)}>
-                        <EditIcon />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          {/* Pagination Controls */}
-          <div className="pagination-container">
-            <button
-              className={`pagination-btn ${
-                currentPage === 1 ? "disabled" : ""
-              }`}
-              onClick={previousPage}
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-
-            {pageNumbers.map((pageNumber) => (
+          {/* Classes table*/}
+          <div className="ClassTable-Container">
+            {loading ? (
+              <p>Loading...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              <>{/* Rest of your component */}</>
+            )}
+            <table className="ClassTable">
+              <thead>
+                <tr>
+                  <th className="C-table-header">Food Name</th>
+                  <th className="C-table-header">Chef Name</th>
+                  <th className="C-table-header">Manage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Array.isArray(currentVideos) &&
+                  currentVideos.map((video) => (
+                    <tr key={video._id}>
+                      <td className="G-table-data">{video.food || "N/A"}</td>
+                      <td className="G-table-data">{video.chef || "N/A"}</td>
+                      <td className="G-table-data">
+                        <button onClick={() => handleDelete(video._id)}>
+                          <AutoDeleteIcon />
+                        </button>
+                        <button onClick={() => handleEdit(video)}>
+                          <EditIcon />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+            {/* Pagination Controls */}
+            <div className="pagination-container">
               <button
-                key={pageNumber}
                 className={`pagination-btn ${
-                  currentPage === pageNumber ? "active" : ""
+                  currentPage === 1 ? "disabled" : ""
                 }`}
-                onClick={() => goToPage(pageNumber)}
+                onClick={previousPage}
+                disabled={currentPage === 1}
               >
-                {pageNumber}
+                Previous
               </button>
-            ))}
 
-            <button
-              className={`pagination-btn ${
-                currentPage === totalPages ? "disabled" : ""
-              }`}
-              onClick={nextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
+              {pageNumbers.map((pageNumber) => (
+                <button
+                  key={pageNumber}
+                  className={`pagination-btn ${
+                    currentPage === pageNumber ? "active" : ""
+                  }`}
+                  onClick={() => goToPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              ))}
+
+              <button
+                className={`pagination-btn ${
+                  currentPage === totalPages ? "disabled" : ""
+                }`}
+                onClick={nextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
