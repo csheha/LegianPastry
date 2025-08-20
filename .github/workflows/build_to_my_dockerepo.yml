@@ -26,4 +26,6 @@ jobs:
       - name: Tag and push images
         run: bash deployment/push_to_mydocker.sh front back
         env:
-          GITHUB_SHA: ${{ env.SHORT_SHA }}
+          SHORT_SHA: ${{ env.SHORT_SHA }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
