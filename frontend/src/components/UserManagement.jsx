@@ -5,7 +5,7 @@ import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
 import EditIcon from "@mui/icons-material/Edit";
 
 //const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
-const API_BASE_URL = `http://localhost:5000`;
+//const API_BASE_URL = `http://localhost:5000`;
 
 export default function UserManagement() {
   // managing states
@@ -21,7 +21,7 @@ export default function UserManagement() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/auth/fetchusers`);
+        const res = await axios.get(`/api/auth/fetchusers`);
         console.log(res.data);
         setUsers(res.data.data); // Fix: use res.data.data based on your API response
       } catch (err) {
@@ -37,7 +37,7 @@ export default function UserManagement() {
   // Handle delete option
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/auth/delete/${id}`);
+      await axios.delete(`/api/auth/delete/${id}`);
 
       //after delete remove deleted image from state
       setUsers(users.filter((user) => user._id !== id));

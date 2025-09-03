@@ -6,7 +6,7 @@ import SpinnerLoader from "./SpinnerLoader";
 import { useNavigate } from "react-router-dom";
 
 //const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
-const API_BASE_URL = `http://localhost:5000`;
+//const API_BASE_URL = `http://localhost:5000`;
 
 export default function FoodGallery() {
   const [model, setModel] = useState(false);
@@ -21,7 +21,7 @@ export default function FoodGallery() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/videos/`);
+        const res = await axios.get(`/api/videos/`);
 
         if (Array.isArray(res.data)) {
           setVideos(res.data);
@@ -42,7 +42,7 @@ export default function FoodGallery() {
   const getVideo = (video) => {
     // Normalize filepath by replacing backslashes with forward slashes
     const cleanedPath = video.filepath.replace(/\\/g, "/");
-    setTempVideoSrc(`${API_BASE_URL}/` + cleanedPath);
+    setTempVideoSrc(`/api/` + cleanedPath);
     setModel(true);
   };
 
@@ -94,7 +94,7 @@ export default function FoodGallery() {
                 title={item.food}
               >
                 <video
-                  src={`${API_BASE_URL}/${item.filepath.replace(/\\/g, "/")}`}
+                  src={`/api/${item.filepath.replace(/\\/g, "/")}`}
                   controls
                   style={{ width: "100%" }}
                   alt={item.food}

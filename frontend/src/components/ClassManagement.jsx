@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 
 //const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
-const API_BASE_URL = `http://localhost:5000`;
+//const API_BASE_URL = `http://localhost:5000`;
 
 export default function ClassManagement() {
   // loading and error
@@ -29,7 +29,7 @@ export default function ClassManagement() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/videos/`);
+        const res = await axios.get(`/api/videos/`);
         setVideos(res.data);
       } catch (err) {
         setError("Failed to fetch data.");
@@ -72,7 +72,7 @@ export default function ClassManagement() {
 
     try {
       // Upload image
-      await axios.post(`${API_BASE_URL}/videos/upload`, formData, {
+      await axios.post(`/api/videos/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -87,7 +87,7 @@ export default function ClassManagement() {
       closeDialog();
 
       // Refresh videos list
-      const res = await axios.get(`${API_BASE_URL}/videos`);
+      const res = await axios.get(`/api/videos`);
       setVideos(res.data);
     } catch (err) {
       console.error("Error uploading video:", err); // For debugging
@@ -97,7 +97,7 @@ export default function ClassManagement() {
   // Handle delete option
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/videos/${id}`);
+      await axios.delete(`/api/videos/${id}`);
 
       //after delete remove deleted image from state
       setVideos(videos.filter((video) => video._id !== id));
@@ -127,13 +127,9 @@ export default function ClassManagement() {
         if (file) formData.append("video", file);
 
         // Send PUT request to backend
-        const res = await axios.put(
-          `${API_BASE_URL}/videos/${video._id}`,
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
+        const res = await axios.put(`api/videos/${video._id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
 
         // Update the video in state
         setVideos(

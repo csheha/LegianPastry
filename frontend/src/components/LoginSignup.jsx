@@ -8,7 +8,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 //const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
-const API_BASE_URL = `http://localhost:5000`;
+// const API_BASE_URL = `http://localhost:5000`;
 
 export default function LoginSignup({ onClose, onLoginSuccess }) {
   const [activeTab, setActiveTab] = useState("login");
@@ -26,7 +26,7 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/auth/login`, {
+      const res = await axios.post(`/api/auth/login`, {
         email,
         password,
       });
@@ -65,7 +65,7 @@ export default function LoginSignup({ onClose, onLoginSuccess }) {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/auth/signup`, {
+      const res = await axios.post(`/api/auth/signup`, {
         email,
         username,
         address,

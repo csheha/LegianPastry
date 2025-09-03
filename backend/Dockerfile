@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # set working directory
-WORKDIR /app-lp-backend
+WORKDIR /app
 
 # copy package.json and package-lock.json
 COPY package*.json ./

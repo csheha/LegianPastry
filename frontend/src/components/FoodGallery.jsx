@@ -6,7 +6,7 @@ import SpinnerLoader from "./SpinnerLoader";
 import { useNavigate } from "react-router-dom"; // <-- Added import
 
 //const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
-const API_BASE_URL = `http://localhost:5000`;
+//const API_BASE_URL = `http://localhost:5000`;
 
 export default function FoodGallery() {
   const [model, setModel] = useState(false);
@@ -21,7 +21,7 @@ export default function FoodGallery() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/images/`);
+        const res = await axios.get(`/api/images/`);
         if (Array.isArray(res.data)) {
           setImages(res.data);
         } else {
@@ -41,7 +41,7 @@ export default function FoodGallery() {
   const getImg = (img) => {
     // Normalize filepath by replacing backslashes with forward slashes
     const cleanedPath = img.filepath.replace(/\\/g, "/");
-    setTempImgSrc(`${API_BASE_URL}/` + cleanedPath);
+    setTempImgSrc(`/api/` + cleanedPath);
     setModel(true);
   };
 
@@ -99,7 +99,7 @@ export default function FoodGallery() {
             return (
               <div className="pics" key={index} onClick={() => getImg(item)}>
                 <img
-                  src={`${API_BASE_URL}/${item.filepath.replace(/\\/g, "/")}`}
+                  src={`/api/${item.filepath.replace(/\\/g, "/")}`}
                   alt={item.title}
                   style={{ width: "100%" }}
                 />

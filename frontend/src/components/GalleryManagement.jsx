@@ -6,7 +6,7 @@ import "../styles/GalleryManagement.css";
 import CloseIcon from "@mui/icons-material/Close";
 
 //const API_BASE_URL = `https://legianpastry-production-946e.up.railway.app`;
-const API_BASE_URL = `http://localhost:5000`;
+//const API_BASE_URL = `http://localhost:5000`;
 
 export default function GalleryManagement() {
   // loading and error
@@ -29,7 +29,7 @@ export default function GalleryManagement() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/images/`);
+        const res = await axios.get(`/api/images/`);
         setImages(res.data); // Update based on API structure
       } catch (err) {
         setError("Failed to fetch data.");
@@ -73,7 +73,7 @@ export default function GalleryManagement() {
 
     try {
       // Upload image
-      await axios.post(`${API_BASE_URL}/images/upload`, formData, {
+      await axios.post(`/api/images/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -88,7 +88,7 @@ export default function GalleryManagement() {
       closeDialog();
 
       // Refresh images list
-      const res = await axios.get(`${API_BASE_URL}/images`);
+      const res = await axios.get(`/api/images`);
       setImages(res.data);
     } catch (err) {
       console.error("Error uploading image:", err); // For debugging
@@ -99,7 +99,7 @@ export default function GalleryManagement() {
   // Handle delete option
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/images/${id}`);
+      await axios.delete(`/api/images/${id}`);
 
       //after delete remove deleted image from state
       setImages(images.filter((image) => image._id !== id));
@@ -129,13 +129,9 @@ export default function GalleryManagement() {
         if (file) formData.append("image", file);
 
         // Send PUT request to backend
-        const res = await axios.put(
-          `${API_BASE_URL}/images/${image._id}`,
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
+        const res = await axios.put(`api/images/${image._id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
 
         // Update the image in state
         setImages(
